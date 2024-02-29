@@ -30,6 +30,13 @@
             'children' => [],
         ],
         [
+            'name' => 'Kích thước',
+            'classIcon' => 'bx bx-ruler',
+            'route' => 'dashboard.sizes.index',
+            'can' => '',
+            'children' => [],
+        ],
+        [
             'name' => 'Người dùng',
             'classIcon' => ' bx bx-user',
             'route' => 'dashboard.users.index',

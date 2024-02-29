@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\Group;
 use App\Models\User;
@@ -45,6 +46,14 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
         Route::get('/edit/{color}', [ColorController::class, 'edit'])->name('edit');
         Route::put('/edit/{id}', [ColorController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ColorController::class, 'delete'])->name('delete');
+    });
+    Route::prefix('sizes')->name('sizes.')->group(function () {
+        Route::get('/', [SizeController::class, 'index'])->name('index');
+        Route::get('/add', [SizeController::class, 'add'])->name('add');
+        Route::post('/add', [SizeController::class, 'store'])->name('store');
+        Route::get('/edit/{size}', [SizeController::class, 'edit'])->name('edit');
+        Route::put('/edit/{id}', [SizeController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [SizeController::class, 'delete'])->name('delete');
     });
     Route::prefix('users')->name('users.')->middleware('can:users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index')->can('view', User::class);

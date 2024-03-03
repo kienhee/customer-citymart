@@ -23,6 +23,13 @@
             'children' => [],
         ],
         [
+            'name' => 'Sản phẩm',
+            'classIcon' => 'bx bx-package',
+            'route' => 'dashboard.products.index',
+            'can' => '',
+            'children' => [],
+        ],
+        [
             'name' => 'Bảng màu',
             'classIcon' => 'bx bx-palette',
             'route' => 'dashboard.colors.index',

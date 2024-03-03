@@ -39,12 +39,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            "cover" => "required",
+            "cover" => "nullable",
             'name' => 'required|max:50|unique:categories,name',
             'category_id' => 'required|numeric',
             'description' => 'max:255',
         ], [
-            "cover.required" => "Vui lòng thêm ảnh bìa",
             "name.required" => "Vui lòng nhập trường này",
             "name.unique" => "Tên này đã tồn tại!",
             "name.max" => "Tối đa :max kí tự",
@@ -67,12 +66,11 @@ class CategoryController extends Controller
     {
 
         $validate = $request->validate([
-            "cover" => "required",
+            "cover" => "nullable",
             'name' => 'required|max:50|unique:categories,name,' . $id,
             'category_id' => 'required|numeric',
             'description' => 'nullable',
         ], [
-            "cover.required" => "Vui lòng thêm ảnh bìa",
             "name.required" => "Vui lòng nhập trường này",
             "name.unique" => "Tên này đã tồn tại!",
             "name.max" => "Tối đa :max kí tự",

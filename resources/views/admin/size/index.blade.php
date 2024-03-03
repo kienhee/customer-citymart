@@ -38,7 +38,6 @@
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @if ($sizes->count() > 0)
-
                         @foreach ($sizes as $item)
                             <tr>
                                 <td> <a href="{{ route('dashboard.sizes.edit', $item->id) }}" title="Click xem thêm"
@@ -87,8 +86,6 @@
                         </tr>
 
                     @endif
-
-
                 </tbody>
             </table>
         </div>

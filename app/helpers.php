@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Group;
+use App\Models\Setting;
+use App\Models\Size;
 use Illuminate\Support\Facades\Auth;
 
 function groups()
@@ -45,6 +48,10 @@ function getAllCategories()
 {
   return Category::orderBy('created_at', 'desc')->get();
 }
+function categoryMegaMenu()
+{
+  return Category::getParentAndChildrenCategories();
+}
 function getThumb($originalPath)
 {
   // Tách đường dẫn thành thư mục và tên file
@@ -54,4 +61,32 @@ function getThumb($originalPath)
   $newPath = $pathInfo['dirname'] . '/thumbs/' . $pathInfo['basename'];
 
   return $newPath;
+}
+
+function getAllColors()
+{
+  return Color::orderBy('created_at', 'desc')->get();
+}
+function getAllSizes()
+{
+  return Size::orderBy('created_at', 'desc')->get();
+}
+function menuSelect($menu, $parent = 0, $level = 0)
+{
+  if ($menu->count() > 0) {
+    $result = [];
+    foreach ($menu as $key => $category) {
+      if ($category['category_id'] == $parent) {
+        $category['level'] = $level;
+        $result[] = $category;
+        $child = menuSelect($menu, $category['id'], $level + 1);
+        $result = array_merge($result, $child);
+      }
+    }
+    return $result;
+  }
+}
+function information()
+{
+  return Setting::where('id', 1)->first();
 }

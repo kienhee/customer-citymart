@@ -18,7 +18,7 @@
             <x-notice />
         </div>
         <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-            <h5 class="card-title mb-0">Quản lý Người dùng</h5>
+            <h5 class="card-title mb-0">Quản lý bảng màu</h5>
             <a href="{{ route('dashboard.colors.add') }}" class="btn btn-outline-primary">
                 <i class="fa-solid fa-plus"></i> &nbsp;Thêm màu
             </a>

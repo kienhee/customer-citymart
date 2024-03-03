@@ -6,9 +6,11 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ClientController;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +26,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::prefix('/')->group(
+    function () {
+        Route::get('/', [ClientController::class, 'index'])->name('index');
+        Route::get('shop', [ClientController::class, 'shop'])->name('shop');
+        Route::get('news', [ClientController::class, 'news'])->name('news');
+        Route::get('contact', [ClientController::class, 'contact'])->name('contact');
+    }
+);
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::prefix('categories')->name('categories.')->group(function () {
@@ -38,6 +45,16 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
         Route::delete('/soft-delete/{id}', [categoryController::class, 'softDelete'])->name('soft-delete');
         Route::delete('/force-delete/{id}', [categoryController::class, 'forceDelete'])->name('force-delete');
         Route::delete('/restore/{id}', [categoryController::class, 'restore'])->name('restore');
+    });
+    Route::prefix('products')->name('products.')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/add', [ProductController::class, 'add'])->name('add');
+        Route::post('/add', [ProductController::class, 'store'])->name('store');
+        Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('edit');
+        Route::put('/edit/{id}', [ProductController::class, 'update'])->name('update');
+        Route::delete('/soft-delete/{id}', [ProductController::class, 'softDelete'])->name('soft-delete');
+        Route::delete('/force-delete/{id}', [ProductController::class, 'forceDelete'])->name('force-delete');
+        Route::delete('/restore/{id}', [ProductController::class, 'restore'])->name('restore');
     });
     Route::prefix('colors')->name('colors.')->group(function () {
         Route::get('/', [ColorController::class, 'index'])->name('index');
@@ -55,6 +72,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
         Route::put('/edit/{id}', [SizeController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [SizeController::class, 'delete'])->name('delete');
     });
+
     Route::prefix('users')->name('users.')->middleware('can:users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index')->can('view', User::class);
         Route::get('/list', [UserController::class, 'list'])->name('list')->can('view', User::class);

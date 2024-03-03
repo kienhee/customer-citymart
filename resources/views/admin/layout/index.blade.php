@@ -73,7 +73,9 @@
     {{-- option in this file. --}}
     <script src="{{ asset('admin-frontend') }}/assets/js/config.js"></script>
 
-    {{-- import here --}}
+      {{-- import here --}}
+    <script src="https://cdn.tiny.cloud/1/{{ getEnv('TinyMCE_KEY') }}/tinymce/6/tinymce.min.js" referrerpolicy="origin">
+    </script>
   </head>
 
 <body>
@@ -165,7 +167,7 @@
   {{-- Page JS --}}
   <script src="{{ asset('admin-frontend') }}/assets/js/pages-auth.js"></script>
    <script src="{{ asset('admin-frontend') }}/assets/js/app-ecommerce-dashboard.js"></script>
-
+  <script src="{{ asset('admin-frontend') }}/assets/js/forms-selects.js"></script>
   {{-- import here --}}
   @yield('script')
 

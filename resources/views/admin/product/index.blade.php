@@ -43,7 +43,7 @@
                         </option>
                     </select>
                 </div>
-                {{-- <div class="col-md-6 col-lg-3 mb-2">
+                <div class="col-md-6 col-lg-3 mb-2">
                     <select class="form-select @error('category_id') is-invalid @enderror" name="category_id"
                         id="category_id">
                         <option value="">bộ sưu tập</option>
@@ -59,7 +59,7 @@
 
                     </select>
 
-                </div> --}}
+                </div>
                 <div class="col-md-6 col-lg-3 mb-2">
                     <select class="form-select" name="sort">
                         <option value="">Bộ lọc</option>
@@ -84,7 +84,6 @@
                         <th class="px-1 text-center" style="width: 50px">#ID</th>
                         <th class="px-1 text-center" style="width: 50px"></th>
                         <th>Tên sản phẩm</th>
-                        <th class="px-1 text-center" style="width: 130px">Nhãn mới</th>
                         <th class="px-1 text-center" style="width: 130px">Trạng thái</th>
                         <th class="px-1 text-center" style="width: 130px">Số lượng</th>
                         <th style="width: 130px">Ngày tạo</th>
@@ -111,15 +110,13 @@
                                             {{ $item->name }}
                                         </strong>
                                     </a>
-                                    <small>bộ sưu tập: {{ $item->category->name }}</small>
+                                    <small>Danh mục: {{ $item->category->name }}</small>
                                 </td>
-                                <td class="px-0 text-center">
-                                    <span
-                                        class="badge  me-1 {{ $item->isNew == 1 ? 'bg-label-success ' : ' bg-label-secondary ' }}">{{ $item->isNew == 1 ? 'New' : 'Ẩn' }}</span>
-                                </td>
+
                                 <td class="px-0 text-center"><span
                                         class="badge  me-1 {{ $item->deleted_at == null ? 'bg-label-success ' : ' bg-label-primary' }}">{{ $item->deleted_at == null ? 'Công khai' : 'Tạm ẩn' }}</span>
                                 </td>
+
                                 <td class="text-center px-0">
                                     {{ $item->quantity }}
                                 </td>

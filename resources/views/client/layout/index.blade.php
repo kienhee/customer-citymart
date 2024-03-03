@@ -27,16 +27,16 @@
             'children' => [],
             'link' => 'index',
         ],
-        [
-            'name' => 'Tin Tức',
-            'children' => [],
-            'link' => 'news',
-        ],
-        [
-            'name' => 'Liên hệ',
-            'children' => [],
-            'link' => 'contact',
-        ],
+        // [
+        //     'name' => 'Tin Tức',
+        //     'children' => [],
+        //     'link' => 'news',
+        // ],
+        // [
+        //     'name' => 'Liên hệ',
+        //     'children' => [],
+        //     'link' => 'contact',
+        // ],
     ];
 @endphp
 <!DOCTYPE html>

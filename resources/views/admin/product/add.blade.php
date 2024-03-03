@@ -13,7 +13,8 @@
             <li class="breadcrumb-item active">Thêm mới sản phẩm</li>
         </ol>
     </nav>
-    <div class="row">
+    <form action="{{ route('dashboard.products.store') }}" class="row" method="POST">
+        @csrf
         <div class="col-12 col-lg-8">
             <div class="card mb-4">
                 <div class="px-3 pt-2">
@@ -48,7 +49,7 @@
                     <div class="col-12 mb-3">
                         <label for="content-product" class="form-label">Thông tin sản phẩm : <span
                                 class="text-danger">*</span></label>
-                        <textarea class="form-control @error('content') is-invalid @enderror " id="content-product" rows="3"
+                        <textarea class="form-control my-editor @error('content') is-invalid @enderror " id="content-product" rows="3"
                             name="content" placeholder="Mô tả chi tiết: Thông tin xuất xứ, chất liệu, ..v.v">{{ old('content') }}</textarea>
                         @error('content')
                             <p class="text-danger my-1">{{ $message }}</p>
@@ -124,11 +125,11 @@
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3 ">
-                        <label for="select-multiple" class="form-label">Màu sắc: <span class="text-danger">*</span></label>
-                        <select id="select-multiple" class="@error('colors') is-invalid @enderror" multiple
-                            name="colors" placeholder="Chọn màu sắc" data-search="true"
-                            data-silent-initial-value-set="true">
+                    <div class="mb-3">
+                        <label for="colors" class="form-label">Màu sắc: <span class="text-danger">*</span></label>
+                        <select id="colors" name="colors"
+                            class="select2 form-select @error('colors') is-invalid @enderror" multiple>
+                           <option value="">Vui lòng lựa chọn</option>
                             @foreach (getAllColors() as $color)
                                 <option
                                     {{ strpos(old('colors'), $color->name . '-' . $color->code) !== false ? 'selected' : '' }}
@@ -141,11 +142,11 @@
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3 ">
-                        <label for="select-multiple" class="form-label">Kích thước: <span
-                                class="text-danger">*</span></label>
-                        <select id="select-multiple" class="@error('sizes') is-invalid @enderror" multiple name="sizes"
-                            placeholder="Chọn Kích thước" data-search="true" data-silent-initial-value-set="true">
+                    <div class="mb-3">
+                        <label for="sizes" class="form-label">Kích thước: <span class="text-danger">*</span></label>
+                        <select id="sizes" name="sizes"
+                            class="select2 form-select @error('sizes') is-invalid @enderror" multiple>
+                            <option value="">Vui lòng lựa chọn</option>
                             @foreach (getAllSizes() as $size)
                                 <option {{ strpos(old('sizes'), $size->name) !== false ? 'selected' : '' }}
                                     value="{{ $size->name }}">{{ $size->name }}
@@ -157,6 +158,7 @@
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
+
 
                 </div>
             </div>
@@ -178,13 +180,13 @@
                         @enderror
                     </div>
                     <div class="mb-3 ">
-                        <label for="sale" class="form-label">Sale (%):</label>
+                        <label for="discount" class="form-label">discount (%):</label>
                         <div class="input-group input-group-merge">
                             <span class="input-group-text">%</span>
-                            <input type="text" name="sale" class="form-control" value="{{ old('sale') ?? 0 }}"
+                            <input type="text" name="discount" class="form-control" value="{{ old('discount') ?? 0 }}"
                                 placeholder="0.000">
                         </div>
-                        @error('sale')
+                        @error('discount')
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -192,7 +194,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -44,48 +45,41 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validate = $request->validate([
             'name' => 'required|max:255|unique:products,name',
-            'slug' => 'required|unique:products,slug',
             'description' => 'required|max:255',
             'content' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required|numeric',
             'colors' => 'required',
             'sizes' => 'required',
-            'genders' => 'required',
             'price' => 'required|numeric',
-            'sale' => 'numeric|max_digits:2',
+            'discount' => 'numeric|max_digits:2',
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',
-            'slug.required' => 'Vui lòng nhập trường này!',
+
             'description.required' => 'Vui lòng nhập trường này!',
             'content.required' => 'Vui lòng nhập trường này!',
             'quantity.required' => 'Vui lòng nhập trường này!',
             'category_id.required' => 'Vui lòng nhập trường này!',
             'colors.required' => 'Vui lòng nhập trường này!',
             'sizes.required' => 'Vui lòng nhập trường này!',
-            'genders.required' => 'Vui lòng nhập trường này!',
             'images.required' => 'Vui lòng thêm ảnh cho sản phẩm',
             'price.required' => 'Vui lòng nhập trường này!',
             'quantity.numeric' => 'Giá trị phải là số!',
             'category_id.numeric' => 'Giá trị phải là số!',
             'price.numeric' => 'Giá trị phải là số!',
-            'sale.numeric' => 'Giá trị phải là số!',
+            'discount.numeric' => 'Giá trị phải là số!',
             'name.max' => 'Tối đa :max kí tự',
             'description.max' => 'Tối đa :max kí tự',
-            'sale.max_digits' => 'Tối đa :max_digits số',
+            'discount.max_digits' => 'Tối đa :max_digits số',
             'tax.max_digits' => 'Tối đa :max_digits số',
             'name.unique' => 'Tên này đã được sử dụng',
-            'slug.unique' => 'Đường dẫn này đã được sử dụng',
         ]);
+        $validate['slug'] = Str::slug($request->name);
 
-        if ($request->has('isNew')) {
-            $validate['isNew'] = 1;
-        } else {
-            $validate['isNew'] = 0;
-        }
         $check = Product::insert($validate);
         if ($check) {
             return back()->with('msgSuccess', 'Thêm thành công');
@@ -102,45 +96,42 @@ class ProductController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|max:255|unique:products,name,' . $id,
-            'slug' => 'required|unique:products,slug,' . $id,
+
             'description' => 'required|max:255',
             'content' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required|numeric',
             'colors' => 'required',
             'sizes' => 'required',
-            'genders' => 'required',
+
             'price' => 'required|numeric',
-            'sale' => 'numeric|max_digits:2',
+            'discount' => 'numeric|max_digits:2',
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',
-            'slug.required' => 'Vui lòng nhập trường này!',
+
             'description.required' => 'Vui lòng nhập trường này!',
             'content.required' => 'Vui lòng nhập trường này!',
             'quantity.required' => 'Vui lòng nhập trường này!',
             'category_id.required' => 'Vui lòng nhập trường này!',
             'colors.required' => 'Vui lòng nhập trường này!',
             'sizes.required' => 'Vui lòng nhập trường này!',
-            'genders.required' => 'Vui lòng nhập trường này!',
+
             'images.required' => 'Vui lòng thêm ảnh cho sản phẩm',
             'price.required' => 'Vui lòng nhập trường này!',
             'quantity.numeric' => 'Giá trị phải là số!',
             'category_id.numeric' => 'Giá trị phải là số!',
             'price.numeric' => 'Giá trị phải là số!',
-            'sale.numeric' => 'Giá trị phải là số!',
+            'discount.numeric' => 'Giá trị phải là số!',
             'name.max' => 'Tối đa :max kí tự',
             'description.max' => 'Tối đa :max kí tự',
-            'sale.max_digits' => 'Tối đa :max_digits số',
+            'discount.max_digits' => 'Tối đa :max_digits số',
             'tax.max_digits' => 'Tối đa :max_digits số',
             'name.unique' => 'Tên này đã được sử dụng',
-            'slug.unique' => 'Đường dẫn này đã được sử dụng',
+
         ]);
-        if ($request->has('isNew')) {
-            $validate['isNew'] = 1;
-        } else {
-            $validate['isNew'] = 0;
-        }
+
+        $validate['slug'] = Str::slug($request->name);
 
         $check = Product::where('id', $id)->update($validate);
         if ($check) {

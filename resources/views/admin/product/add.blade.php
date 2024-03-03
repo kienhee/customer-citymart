@@ -125,11 +125,12 @@
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="colors" class="form-label">Màu sắc: <span class="text-danger">*</span></label>
-                        <select id="colors" name="colors"
-                            class="select2 form-select @error('colors') is-invalid @enderror" multiple>
-                           <option value="">Vui lòng lựa chọn</option>
+                    <div class="mb-3 ">
+                        <label for="select-multiple" class="form-label">Màu sắc: <span
+                                class="text-danger">*</span></label>
+                        <select id="select-multiple" class="@error('colors') is-invalid @enderror" multiple
+                            name="colors" placeholder="Chọn màu sắc" data-search="true"
+                            data-silent-initial-value-set="true">
                             @foreach (getAllColors() as $color)
                                 <option
                                     {{ strpos(old('colors'), $color->name . '-' . $color->code) !== false ? 'selected' : '' }}
@@ -142,11 +143,11 @@
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="sizes" class="form-label">Kích thước: <span class="text-danger">*</span></label>
-                        <select id="sizes" name="sizes"
-                            class="select2 form-select @error('sizes') is-invalid @enderror" multiple>
-                            <option value="">Vui lòng lựa chọn</option>
+                    <div class="mb-3 ">
+                        <label for="select-multiple" class="form-label">Kích thước: <span
+                                class="text-danger">*</span></label>
+                        <select id="select-multiple" class="@error('sizes') is-invalid @enderror" multiple name="sizes"
+                            placeholder="Chọn Kích thước" data-search="true" data-silent-initial-value-set="true">
                             @foreach (getAllSizes() as $size)
                                 <option {{ strpos(old('sizes'), $size->name) !== false ? 'selected' : '' }}
                                     value="{{ $size->name }}">{{ $size->name }}
@@ -171,9 +172,10 @@
                         <label for="price" class="form-label">Giá bán: <span class="text-danger">*</span></label>
                         <div class="input-group input-group-merge">
                             <span class="input-group-text">$</span>
-                            <input type="text" name="price" value="{{ old('price') ?? 0 }}" class="form-control"
-                                placeholder="0.000">
-                            <span class="input-group-text">VND</span>
+                            <input type="text" name="price" value="{{ old('price') }}"
+                                class="form-control @error('price') is-invalid @enderror"
+                                placeholder="Vui lòng thêm thông tin">
+                            <span class="input-group-text">Kr</span>
                         </div>
                         @error('price')
                             <p class="text-danger my-1">{{ $message }}</p>
@@ -183,8 +185,9 @@
                         <label for="discount" class="form-label">discount (%):</label>
                         <div class="input-group input-group-merge">
                             <span class="input-group-text">%</span>
-                            <input type="text" name="discount" class="form-control" value="{{ old('discount') ?? 0 }}"
-                                placeholder="0.000">
+                            <input type="text" name="discount"
+                                class="form-control @error('discount') is-invalid @enderror"
+                                value="{{ old('discount') }}" placeholder="Vui lòng thêm thông tin">
                         </div>
                         @error('discount')
                             <p class="text-danger my-1">{{ $message }}</p>

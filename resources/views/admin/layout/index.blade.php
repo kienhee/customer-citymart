@@ -59,6 +59,7 @@
   <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/css/pages/page-profile.css" />
   <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/css/pages/card-analytics.css" />
   <link rel="stylesheet" href="{{ asset('admin-frontend/assets/css/coloris.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin-frontend/assets/css/virtual-select.min.css') }}">
 
   {{-- Helpers --}}
   <script src="{{ asset('admin-frontend') }}/assets/vendor/js/helpers.js"></script>
@@ -168,9 +169,14 @@
   <script src="{{ asset('admin-frontend') }}/assets/js/pages-auth.js"></script>
    <script src="{{ asset('admin-frontend') }}/assets/js/app-ecommerce-dashboard.js"></script>
   <script src="{{ asset('admin-frontend') }}/assets/js/forms-selects.js"></script>
+  <script src="{{ asset('admin-frontend') }}/assets/js/virtual-select.min.js"></script>
   {{-- import here --}}
   @yield('script')
-
+<script>
+    VirtualSelect.init({
+        ele: '#select-multiple'
+    });
+</script>
 </body>
 
 </html>

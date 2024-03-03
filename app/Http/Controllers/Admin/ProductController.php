@@ -45,7 +45,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $validate = $request->validate([
             'name' => 'required|max:255|unique:products,name',
             'description' => 'required|max:255',
@@ -55,7 +55,7 @@ class ProductController extends Controller
             'colors' => 'required',
             'sizes' => 'required',
             'price' => 'required|numeric',
-            'discount' => 'numeric|max_digits:2',
+            'discount' => 'nullable|numeric|max_digits:2',
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',
@@ -105,7 +105,7 @@ class ProductController extends Controller
             'sizes' => 'required',
 
             'price' => 'required|numeric',
-            'discount' => 'numeric|max_digits:2',
+            'discount' => 'nullable|numeric|max_digits:2',
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',

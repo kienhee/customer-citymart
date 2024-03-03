@@ -144,7 +144,7 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn p-0  w-100 text-start" type="submit">
+                                                    <button class="btn p-0  text-start" type="submit">
                                                         <i class='bx bx-revision'></i>
                                                         Khôi phục hoạt động
                                                     </button>
@@ -156,7 +156,7 @@
                                                 @if ($item->trashed()) onsubmit="return confirm('Bạn chắc chắn muốn xóa vĩnh viễn?')" @endif>
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn p-0  w-100 text-start" type="submit">
+                                                <button class="btn p-0  text-start" type="submit">
                                                     <i
                                                         class="bx {{ $item->trashed() ? 'bx-trash' : 'bx bxs-hand' }}  me-1"></i>
                                                     {{ $item->trashed() ? 'Xóa vĩnh viễn' : 'Tạm ngưng hoạt động' }}

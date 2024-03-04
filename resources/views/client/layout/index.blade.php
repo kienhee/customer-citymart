@@ -23,7 +23,7 @@
             'link' => 'shop',
         ],
         [
-            'name' => 'Ưu Đãi',
+            'name' => 'Sản Phẩm Khuyến Mãi',
             'children' => [],
             'link' => 'index',
         ],

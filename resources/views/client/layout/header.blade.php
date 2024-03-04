@@ -103,17 +103,19 @@
                                 </li>
                             @else
                                 <li class="has__dropdown position-static">
-                                    <a href="#">{{ $item['name'] }}</a>
+                                    <a href="javascript:void(0)">{{ $item['name'] }}</a>
                                     <!-- Mega Menu -->
 
                                     <div class="mega__menu sub__menu">
                                         <ul class="mega__menu-item">
-                                            @foreach ($item['children'] as $item)
+                                            @foreach ($item['children'] as $parent)
                                                 <li class="sub-mega__menu">
-                                                    <a class="menu__title" href="#">{{ $item['parent'] }}</a>
+                                                    <a class="menu__title"
+                                                        href="javascript:void(0)">{{ $parent['parent'] }}</a>
                                                     <ul>
-                                                        @foreach ($item['children'] as $item)
-                                                            <li><a href="all-categories.html">{{ $item['name'] }}</a>
+                                                        @foreach ($parent['children'] as $children)
+                                                            <li><a
+                                                                    href="{{ route('shop', ['categoryChildren' => $children['slug'], 'categoryParent' => $parent['slug']]) }}">{{ $children['name'] }}</a>
                                                             </li>
                                                         @endforeach
 

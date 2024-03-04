@@ -15,8 +15,7 @@ class ProductController extends Controller
 
         if ($request->has('keywords') && $request->keywords != null) {
             $result
-                ->where('name', 'like', '%' . $request->keywords . '%')
-                ->orWhere('product_code', 'like', '%' . $request->keywords . '%');
+                ->where('name', 'like', '%' . $request->keywords . '%');
         }
         if ($request->has('category_id') && $request->category_id != null) {
             $result->where('category_id', '=', $request->category_id);
@@ -34,7 +33,7 @@ class ProductController extends Controller
         } else {
             $result->withTrashed();
         }
-        $products = $result->paginate(10);
+        $products = $result->paginate(20);
         return view('admin.product.index', compact('products'));
     }
 
@@ -45,26 +44,23 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $validate = $request->validate([
             'name' => 'required|max:255|unique:products,name',
-            'description' => 'required|max:255',
+            'description' => 'nullable|max:255',
             'content' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required|numeric',
-            'colors' => 'required',
+            'colors' => 'nullable',
             'sizes' => 'required',
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric|max_digits:2',
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',
-
-            'description.required' => 'Vui lòng nhập trường này!',
             'content.required' => 'Vui lòng nhập trường này!',
             'quantity.required' => 'Vui lòng nhập trường này!',
             'category_id.required' => 'Vui lòng nhập trường này!',
-            'colors.required' => 'Vui lòng nhập trường này!',
             'sizes.required' => 'Vui lòng nhập trường này!',
             'images.required' => 'Vui lòng thêm ảnh cho sản phẩm',
             'price.required' => 'Vui lòng nhập trường này!',
@@ -97,26 +93,21 @@ class ProductController extends Controller
         $validate = $request->validate([
             'name' => 'required|max:255|unique:products,name,' . $id,
 
-            'description' => 'required|max:255',
+            'description' => 'nullable|max:255',
             'content' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required|numeric',
-            'colors' => 'required',
+            'colors' => 'nullable',
             'sizes' => 'required',
-
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric|max_digits:2',
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',
-
-            'description.required' => 'Vui lòng nhập trường này!',
             'content.required' => 'Vui lòng nhập trường này!',
             'quantity.required' => 'Vui lòng nhập trường này!',
             'category_id.required' => 'Vui lòng nhập trường này!',
-            'colors.required' => 'Vui lòng nhập trường này!',
             'sizes.required' => 'Vui lòng nhập trường này!',
-
             'images.required' => 'Vui lòng thêm ảnh cho sản phẩm',
             'price.required' => 'Vui lòng nhập trường này!',
             'quantity.numeric' => 'Giá trị phải là số!',

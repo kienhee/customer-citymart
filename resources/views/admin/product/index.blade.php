@@ -30,7 +30,7 @@
                 <div class="col-md-6 col-lg-3 mb-2">
                     <div class="input-group input-group-merge">
                         <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-                        <input type="search" class="form-control" placeholder="Tên hoặc mã sản phẩm" name="keywords"
+                        <input type="search" class="form-control" placeholder="Tên sản phẩm" name="keywords"
                             value="{{ Request()->keywords }}">
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                                     </a>
                                 </td>
                                 <td class="px-0 text-center">
-                                    <img src="{{ explode(',', $item->images)[0] ?? '' }}" alt="Ảnh"
+                                    <img src="{{ getThumb(explode(',', $item->images)[0]) ?? '' }}" alt="Ảnh"
                                         class=" object-fit-cover border rounded w-px-40 h-px-40">
                                 </td>
                                 <td>

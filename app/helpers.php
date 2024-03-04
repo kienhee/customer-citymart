@@ -29,6 +29,10 @@ function categoriesParent()
 {
   return Category::where('category_id', 0)->orderBy('created_at', 'desc')->get();
 }
+function categoriesChildren()
+{
+  return Category::where('category_id','<>', 0)->orderBy('created_at', 'desc')->get();
+}
 function menuTreeCategory($menu, $parentId = 0)
 {
   if ($menu->count() > 0) {
@@ -71,6 +75,11 @@ function getAllSizes()
 {
   return Size::orderBy('created_at', 'desc')->get();
 }
+function suggestionSizes()
+{
+  return Size::orderBy('created_at', 'desc')->pluck('name')->toArray();
+}
+
 function menuSelect($menu, $parent = 0, $level = 0)
 {
   if ($menu->count() > 0) {

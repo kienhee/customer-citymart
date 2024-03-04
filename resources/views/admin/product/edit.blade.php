@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-12 mb-3">
-                        <label for="description" class="form-label">Mô tả ngắn: <span class="text-danger">*</span></label>
+                        <label for="description" class="form-label">Mô tả ngắn: </label>
 
                         <textarea class="form-control @error('description') is-invalid @enderror " id="description" rows="3"
                             name="description" placeholder="Mô tả ngắn về sản phẩm">{{ $product->description ?? old('description') }}</textarea>
@@ -129,8 +129,7 @@
                         @enderror
                     </div>
                     <div class="mb-3 ">
-                        <label for="select-multiple" class="form-label">Màu sắc: <span
-                                class="text-danger">*</span></label>
+                        <label for="select-multiple" class="form-label">Màu sắc: </label>
                         <select id="select-multiple" class="@error('colors') is-invalid @enderror" multiple
                             name="colors" placeholder="Chọn màu sắc" data-search="true"
                             data-silent-initial-value-set="true">
@@ -146,19 +145,11 @@
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3 ">
-                        <label for="select-multiple" class="form-label">Kích thước: <span
-                                class="text-danger">*</span></label>
-                        <select id="select-multiple" class="@error('sizes') is-invalid @enderror" multiple name="sizes"
-                            placeholder="Chọn Kích thước" data-search="true" data-silent-initial-value-set="true">
-                            @foreach (getAllSizes() as $size)
-                                <option
-                                    {{ strpos($product->sizes ?? old('sizes'), $size->name) !== false ? 'selected' : '' }}
-                                    value="{{ $size->name }}">{{ $size->name }}
-                                </option>
-                            @endforeach
-
-                        </select>
+                    <div class="mb-3">
+                        <label for="sizes" class="form-label">Loại: <span class="text-danger">*</span></label>
+                        <input id="sizes" name="sizes" class="form-control @error('sizes') is-invalid @enderror"
+                            placeholder="Vui lòng nhập chọn loại" value="{{ old('sizes') ?? $product->sizes }}" />
+                        <input type="hidden" value="{{ json_encode(suggestionSizes()) }}" id="whitelist">
                         @error('sizes')
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
@@ -213,5 +204,16 @@
     <script src="{{ asset('vendor/laravel-filemanager/js/upload-images-product.js') }}"></script>
     <script>
         $('#upload').filemanager('image');
+        const whitelist = JSON.parse($('#whitelist').val());
+        new Tagify(document.getElementById('sizes'), {
+            whitelist: whitelist,
+            maxTags: 10,
+            dropdown: {
+                maxItems: 20,
+                classname: 'tags-inline',
+                enabled: 0,
+                closeOnSelect: false
+            }
+        });
     </script>
 @endsection

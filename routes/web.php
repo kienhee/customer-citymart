@@ -30,6 +30,7 @@ Route::prefix('/')->group(
     function () {
         Route::get('/', [ClientController::class, 'index'])->name('index');
         Route::get('shop', [ClientController::class, 'shop'])->name('shop');
+        Route::get('shop/{slug}', [ClientController::class, 'productDetail'])->name('productDetail');
         Route::get('news', [ClientController::class, 'news'])->name('news');
         Route::get('contact', [ClientController::class, 'contact'])->name('contact');
     }

@@ -37,8 +37,8 @@
             'children' => [],
         ],
         [
-            'name' => 'Kích thước',
-            'classIcon' => 'bx bx-ruler',
+            'name' => 'Đơn vị',
+            'classIcon' => 'bx bx-calculator',
             'route' => 'dashboard.sizes.index',
             'can' => '',
             'children' => [],

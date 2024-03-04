@@ -19,6 +19,7 @@ class Category extends Model
             if ($category->category_id == 0) {
                 $result[] = [
                     "parent" => $category->name,
+                    'slug' => $category->slug,
                     "children" => self::getChildren($categories, $category->id)
                 ];
             }

@@ -54,6 +54,7 @@
   <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/libs/select2/select2.css" />
   <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/libs/animate-css/animate.css" />
   <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/libs/sweetalert2/sweetalert2.css" />
+  <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/libs/tagify/tagify.css" />
   {{-- Page CSS --}}
   <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/css/pages/page-auth.css" />
   <link rel="stylesheet" href="{{ asset('admin-frontend') }}/assets/vendor/css/pages/page-profile.css" />
@@ -161,7 +162,7 @@
   <script src="{{ asset('admin-frontend') }}/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
   <script src="{{ asset('admin-frontend') }}/assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
 <script src="{{ asset('admin-frontend/assets/js/coloris.min.js') }}"></script>
-
+<script src="{{ asset('admin-frontend') }}/assets/vendor/libs/tagify/tagify.js"></script>
   {{-- Main JS --}}
   <script src="{{ asset('admin-frontend') }}/assets/js/main.js"></script>
 

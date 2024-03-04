@@ -11,19 +11,21 @@ class Product extends Component
     /**
      * Create a new component instance.
      */
-    public $thumnail;
+    public $id;
+    public $images;
     public $name;
     public $price;
-    public $id;
     public $slug;
+    public $discount;
 
-    public function __construct($id, $thumnail, $name, $slug, $price)
+    public function __construct($id, $images, $name, $slug, $price, $discount)
     {
         $this->id = $id;
-        $this->thumnail = $thumnail;
+        $this->images = $images;
         $this->name = $name;
         $this->slug = $slug;
         $this->price = $price;
+        $this->discount = $discount;
     }
 
     /**

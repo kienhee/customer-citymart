@@ -115,7 +115,7 @@
                                                     <ul>
                                                         @foreach ($parent['children'] as $children)
                                                             <li><a
-                                                                    href="{{ route('shop', ['categoryChildren' => $children['slug'], 'categoryParent' => $parent['slug']]) }}">{{ $children['name'] }}</a>
+                                                                    href="{{ route('shop', ['category' => $children['name']]) }}">{{ $children['name'] }}</a>
                                                             </li>
                                                         @endforeach
 

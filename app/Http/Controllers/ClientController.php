@@ -21,11 +21,37 @@ class ClientController extends Controller
                 ];
             }
         }
-        return view('client.index',compact('productsByCategory'));
+        return view('client.index', compact('productsByCategory'));
     }
-    public function shop()
+    public function shop(Request $request)
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(10);
+        $result = Product::query();
+
+        if ($request->has('category') && $request->category != null) {
+            $category = Category::where('name', $request->category)->first();
+            if (!$category) {
+                abort(404);
+            }
+            $result->where('category_id', $category->id);
+        }
+
+        if ($request->has('color') && $request->color != null) {
+            $result->where('colors', 'like', '%' . $request->color . '%');
+        }
+        if ($request->has('price') && $request->price != null) {
+            $prices = explode('-', $request->price);
+
+            // Lấy giá trị tối thiểu và tối đa của khoảng giá
+            $minPrice = $prices[0];
+            $maxPrice = $prices[1];
+
+            // Tìm các sản phẩm có giá nằm trong khoảng giá đã chỉ định
+            $result->where('price', '>=', $minPrice)
+                ->where('price', '<=', $maxPrice);
+        }
+
+
+        $products = $result->orderBy('created_at', 'desc')->paginate(10);
         return view('client.shop', compact('products'));
     }
     public function productDetail($slug)

@@ -31,8 +31,8 @@
                                     </div>
                                     <ul class="list list__v2">
                                         @foreach (categoriesChildren() as $category)
-                                            <li><a href="{{ route('shop', ['category' => $category->slug]) }}"
-                                                    class="text-black">{{ $category->name }}</a></li>
+                                            <li onclick="addFillter('category','{{ $category->name }}')">
+                                                {{ $category->name }}</li>
                                         @endforeach
 
                                     </ul>
@@ -42,11 +42,18 @@
                                         <div class="selected_item selected_item-v2">Khoảng giá</div>
                                     </div>
                                     <ul class="list list__v2">
-                                        <li>$100.00 - $200.00</li>
-                                        <li>$100.00 - $200.00</li>
-                                        <li>$100.00 - $200.00</li>
-                                        <li>$100.00 - $200.00</li>
-                                        <li>$100.00 - $200.00</li>
+                                        <li onclick="addFillter('price','100-200')">
+                                            $100.00 -
+                                            $200.00</li>
+                                        <li onclick="addFillter('price','100-200')">
+                                            $100.00 -
+                                            $200.00</li>
+                                        <li onclick="addFillter('price','100-200')">
+                                            $100.00 -
+                                            $200.00</li>
+                                        <li onclick="addFillter('price','100-200')">
+                                            $100.00 -
+                                            $200.00</li>
                                     </ul>
                                 </div>
                                 <div class="custom__dropdown custom__dropdown__v2">
@@ -55,8 +62,9 @@
                                     </div>
                                     <ul class="list list__v2">
                                         @foreach (getAllColors() as $color)
-                                            <li><span class="color"
-                                                    data-bg="{{ $color->code }}"></span>{{ $color->name }}</li>
+                                            <li onclick="addFillter('color','{{ $color->name }}')"><span class="color"
+                                                    data-bg="{{ $color->code }}"></span>{{ $color->name }}
+                                            </li>
                                         @endforeach
 
                                     </ul>
@@ -77,35 +85,20 @@
                                     </ul>
                                 </div> --}}
                             </form>
-                            <ul class="filtered-query">
-                                <li>
-                                    <span class="value">CareVe</span>
-                                    <a href="#" class="action">&times;</a>
-                                </li>
-                                <li>
-                                    <span class="color" data-bg="red"></span>
-                                    <span class="value">Red</span>
-                                    <a href="#" class="action">&times;</a>
-                                </li>
-                                <li>
-                                    <span class="color" data-bg="green"></span>
-                                    <span class="value">green</span>
-                                    <a href="#" class="action">&times;</a>
-                                </li>
-                                <li>
-                                    <span class="value">In-stock</span>
-                                    <a href="#" class="action">&times;</a>
-                                </li>
-                                <li>
-                                    <span class="value">Rating: 5 & Up</span>
-                                    <a href="#" class="action">&times;</a>
-                                </li>
-                                <li>
-                                    <span class="value">2 Days</span>
-                                    <a href="#" class="action">&times;</a>
-                                </li>
-                                <li class="clearAll"><a href="#">Clear all</a></li>
-                            </ul>
+                            @if (request()->all())
+                                <ul class="filtered-query">
+                                    @foreach (request()->all() as $key => $item)
+                                        <li>
+                                            <span class="value">{{ $item }}</span>
+                                            <a href="#" onclick="removeFilter('{{ $key }}')"
+                                                class="action">&times;</a>
+                                        </li>
+                                    @endforeach
+
+                                    <li class="clearAll"><a href="{{ route('shop') }}">Clear all</a></li>
+
+                                </ul>
+                            @endif
                         </div>
 
                         <div class="shortBy-select select__style d-lg-flex d-none">
@@ -126,7 +119,8 @@
                     <div class="product-card__wrapper justify-content-start items-1-5">
                         @foreach ($products as $item)
                             <x-product id="{{ $item->id }}" images="{{ $item->images }}" name="{{ $item->name }}"
-                                slug="{{ $item->slug }}" price="{{ $item->price }}" discount="{{ $item->discount }}" />
+                                slug="{{ $item->slug }}" price="{{ $item->price }}"
+                                discount="{{ $item->discount }}" />
                         @endforeach
                     </div>
                 </div>
@@ -134,7 +128,7 @@
             <div class="row">
                 <div class="col-12">
                     <!-- pagination start  -->
-                    <nav class="pagination__wrapper">
+                    <nav class="pagination__wrapper justify-content-center">
                         <ul class="pagination">
                             <li class="pagination__item">
                                 <a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a>
@@ -150,13 +144,6 @@
                                 <a class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a>
                             </li>
                         </ul>
-                        <div class="pagination__jump">
-                            <label class="junp__label" for="pageNumber">Go to Page</label>
-                            <input type="number" name="page" id="pageNumber" class="jump__input"
-                                placeholder="02" />
-                            <button class="btn btn-outline jump__btn" type="submit">GO <i
-                                    class="fa-solid fa-arrow-right"></i></button>
-                        </div>
                     </nav>
                     <!-- pagination end -->
                 </div>
@@ -166,4 +153,48 @@
     <!-- All Category Section End -->
 
 
+@endsection
+@section('script')
+    <script>
+        function addFillter(param, value) {
+            // Lấy URL hiện tại
+            let currentUrl = window.location.href;
+
+            // Tham số mới mà bạn muốn thêm hoặc thay thế
+            let newParam = `${param}=${value}`;
+
+            // Regex để kiểm tra xem tham số đã tồn tại trong URL chưa
+            let regex = new RegExp("([?&])" + newParam.split('=')[0] + "=.*?(&|$)", "i");
+
+            // Nếu tham số đã tồn tại, thì thay thế giá trị của nó
+            let newUrl = "";
+            if (currentUrl.match(regex)) {
+                newUrl = currentUrl.replace(regex, '$1' + newParam + '$2');
+            } else {
+                // Nếu tham số chưa tồn tại, thêm nó vào URL
+                newUrl = currentUrl + (currentUrl.indexOf('?') !== -1 ? '&' : '?') + newParam;
+            }
+
+            // Chuyển hướng tới URL mới
+            window.location.href = newUrl;
+
+        }
+
+        function removeFilter(param) {
+            // Lấy URL hiện tại
+            let currentUrl = window.location.href;
+
+            // Tham số mà bạn muốn xoá
+            let paramToRemove = param;
+
+            // Regex để tìm và xoá tham số từ query string
+            let regex = new RegExp("([?&])" + paramToRemove + "=.*?(&|$)", "i");
+
+            // Xoá tham số từ URL
+            let newUrl = currentUrl.replace(regex, '$1').replace(/&$/, '');
+
+            // Chuyển hướng tới URL mới
+            window.location.href = newUrl;
+        }
+    </script>
 @endsection

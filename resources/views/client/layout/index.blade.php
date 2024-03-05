@@ -91,9 +91,9 @@
 
     @include('client.layout.modal')
     {{--  Preloader Start  --}}
-    <div id="preloader">
+    {{-- <div id="preloader">
         <div id="status"><img src="{{ asset('client-frontend') }}/assets/images/favicon.png" alt="logo" /></div>
-    </div>
+    </div> --}}
     {{--  Preloader End  --}}
 
     {{--  Scroll-top  --}}
@@ -112,6 +112,7 @@
     <script src="{{ asset('client-frontend') }}/assets/js/jquery.nice-select.js"></script>
     <script src="{{ asset('client-frontend') }}/assets/js/swiper-bundle.min.js"></script>
     <script src="{{ asset('client-frontend') }}/assets/js/scripts.js"></script>
+    @yield('script')
 </body>
 
 </html>

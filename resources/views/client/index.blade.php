@@ -562,7 +562,8 @@
                     <div class="col-12">
                         <div class="section-title">
                             <h2>{{ $item['category_name'] }}</h2>
-                            <a href="product.html" class="solid-btn">all <i class="fa-solid fa-angle-right"></i></a>
+                            <a href="{{ route('shop', ['category' => $item['category_name']]) }}" class="solid-btn">all <i
+                                    class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@
                 </div>
                 <!-- Header Toggle End -->
                 <div class="header__logo">
-                    <a href="home.html"><img src="{{ asset('client-frontend') }}/assets/images/logo/logo.png"
+                    <a href="{{route('index')}}"><img src="{{ asset('client-frontend') }}/assets/images/logo/logo.png"
                             alt="logo" /> </a>
                 </div>
                 <div class="search__form__wrapper">
@@ -72,7 +72,7 @@
                         <a href="#" class="cart__btn">
                             <div class="cart__btn-img">
                                 <img src="{{ asset('client-frontend') }}/assets/images/cart-icon.png" alt="cart-icon" />
-                                <span class="value">10</span>
+                                <span class="value" id="lengthCart">0</span>
                             </div>
                             <span class="title">cart</span>
                         </a>

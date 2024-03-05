@@ -31,6 +31,9 @@ Route::prefix('/')->group(
         Route::get('/', [ClientController::class, 'index'])->name('index');
         Route::get('shop', [ClientController::class, 'shop'])->name('shop');
         Route::get('shop/{slug}', [ClientController::class, 'productDetail'])->name('productDetail');
+        Route::get('get-cart', [ClientController::class, 'getCart'])->name('getCart');
+        Route::post('add-to-cart', [ClientController::class, 'addToCart'])->name('addToCart');
+        Route::post('handle-actions-cart', [ClientController::class, 'handleActionsCart'])->name('handle-actions-cart');
         Route::get('news', [ClientController::class, 'news'])->name('news');
         Route::get('contact', [ClientController::class, 'contact'])->name('contact');
     }

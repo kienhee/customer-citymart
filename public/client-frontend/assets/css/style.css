@@ -17476,3 +17476,11 @@ p {
 .about-main .main-title {
   max-width: 466px;
 }
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+  font-size: 1.5rem !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: #eb5e28 !important;
+}

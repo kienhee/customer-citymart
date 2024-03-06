@@ -14,18 +14,26 @@ class Product extends Component
     public $id;
     public $images;
     public $name;
+    public $description;
     public $price;
     public $slug;
     public $discount;
+    public $quantity;
+    public $colors;
+    public $sizes;
 
-    public function __construct($id, $images, $name, $slug, $price, $discount)
+    public function __construct($id, $images, $name, $description, $slug, $price, $discount, $quantity, $colors, $sizes)
     {
         $this->id = $id;
         $this->images = $images;
         $this->name = $name;
+        $this->description = $description;
         $this->slug = $slug;
         $this->price = $price;
         $this->discount = $discount;
+        $this->quantity = $quantity;
+        $this->colors = $colors;
+        $this->sizes = $sizes;
     }
 
     /**

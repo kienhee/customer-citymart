@@ -70,6 +70,20 @@
                                     </ul>
                                 </div>
 
+
+
+
+                                {{-- <div class="custom__dropdown custom__dropdown__v2">
+                                    <div class="selected">
+                                        <div class="selected_item selected_item-v2">Sắp xếp</div>
+                                    </div>
+                                    <ul class="list list__v2">
+                                        <li>Tên (A-Z)</li>
+                                        <li>Tên (Z-A)</li>
+                                        <li>Ngày Tạo</li>
+                                        <li>Giảm giá</li>
+                                    </ul>
+                                </div> --}}
                             </form>
                             @if (request()->all())
                                 <ul class="filtered-query">
@@ -80,7 +94,9 @@
                                                 class="action">&times;</a>
                                         </li>
                                     @endforeach
+
                                     <li class="clearAll"><a href="{{ route('shop') }}">Clear all</a></li>
+
                                 </ul>
                             @endif
                         </div>
@@ -103,10 +119,8 @@
                     <div class="product-card__wrapper justify-content-start items-1-5">
                         @foreach ($products as $item)
                             <x-product id="{{ $item->id }}" images="{{ $item->images }}" name="{{ $item->name }}"
-                                description="{{ $item->description }}" slug="{{ $item->slug }}"
-                                price="{{ $item->price }}" discount="{{ $item->discount }}"
-                                quantity="{{ $item->quantity }}" colors="{{ $item->colors }}"
-                                sizes="{{ $item->sizes }}" />
+                                slug="{{ $item->slug }}" price="{{ $item->price }}"
+                                discount="{{ $item->discount }}" />
                         @endforeach
                     </div>
                 </div>

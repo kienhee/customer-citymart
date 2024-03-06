@@ -3,6 +3,16 @@ $("#addTocart").on("click", function () {
     let color = $('input[name="color"]:checked').val();
     let size = $('input[name="size"]:checked').val();
     let quantity = parseInt($(".qnttinput").val());
+    ajaxAddCart(product_id, quantity, color, size);
+});
+$(".cart__btn button").on("click", function () {
+    let product_id = $(this).closest("div").find(".product_id-hidden").val();
+    let color = $(this).closest("div").find(".color-hidden").val();
+    let size = $(this).closest("div").find(".size-hidden").val();
+    let quantity = 1;
+    ajaxAddCart(product_id, quantity, color, size);
+});
+function ajaxAddCart(product_id, quantity, color, size) {
     $.ajax({
         type: "POST",
         url: "/add-to-cart",
@@ -30,7 +40,7 @@ $("#addTocart").on("click", function () {
             });
         },
     });
-});
+}
 function getCart() {
     $.ajax({
         type: "GET",
@@ -41,6 +51,8 @@ function getCart() {
                 $("#cart__items").empty();
                 // Lặp qua mỗi mục trong dữ liệu trả về
                 $("#lengthCart").text(response.length);
+                let subtotal = calculateSubtotal(response);
+                $("#cart__subtotal").text(`${subtotal} Kr`);
                 response.forEach(function (item) {
                     // Tạo HTML cho mỗi mục
                     let html = `
@@ -55,9 +67,13 @@ function getCart() {
                                 <h5 class="product__title">
                                     <a href="/shop/${item.slug}">${
                         item.name
-                    }</a>
+                    } </a>
                                 </h5>
-                                <h5 class="product__price">${item.price} Kr</h5>
+                                <h5 class="product__price">${
+                                    item.discount > 0
+                                        ? item.price * (1 - item.discount / 100)
+                                        : item.price
+                                } Kr</h5>
                             </div>
                             <div class="mb-2" >     
                              ${
@@ -111,7 +127,6 @@ function getCart() {
                 });
                 $(".incressQnt").on("click", function () {
                     let $qty = $(this).closest("div").find(".qnttinput");
-                    console.log();
                     let uuid = $(this).closest("div").find(".uuid").val();
                     let currentVal = parseInt($qty.val(), 10);
                     if (!isNaN(currentVal)) {
@@ -153,6 +168,8 @@ function handleActionsCart(uuid, action) {
         success: function (response) {
             // Xử lý phản hồi từ máy chủ nếu cần
             // console.log(response);
+            let subtotal = calculateSubtotal(response.data);
+            $("#cart__subtotal").text(`${subtotal} Kr`);
         },
         error: function (xhr) {
             // Xử lý lỗi nếu có
@@ -162,41 +179,40 @@ function handleActionsCart(uuid, action) {
 }
 
 function deleteItem(uuid) {
-    $(".flyoutCart").toggleClass("active");
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "/handle-actions-cart",
-                type: "POST",
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr("content"),
-                    uuid,
-                    action: "delete",
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: response.title,
-                        text: response.message,
-                        icon: "success",
-                    });
-                    getCart();
-                },
-                error: function (err) {
-                    Swal.fire({
-                        title: err.responseJSON.title,
-                        text: err.responseJSON.message,
-                        icon: "error",
-                    });
-                },
+    $.ajax({
+        url: "/handle-actions-cart",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            uuid,
+            action: "delete",
+        },
+        success: function (response) {
+            getCart();
+        },
+        error: function (err) {
+            Swal.fire({
+                title: err.responseJSON.title,
+                text: err.responseJSON.message,
+                icon: "error",
             });
-        }
+        },
     });
+}
+// Hàm tính tổng giá tiền của một sản phẩm
+function calculateTotalPrice(product) {
+    var price = parseFloat(product.price);
+    var quantity = parseInt(product.quantity);
+    var discount = product.discount ? parseFloat(product.discount) / 100 : 0;
+    var totalPrice = price * (1 - discount) * quantity;
+    return totalPrice;
+}
+
+// Tính tổng subtotal của tất cả các sản phẩm
+function calculateSubtotal(products) {
+    var subtotal = 0;
+    for (var i = 0; i < products.length; i++) {
+        subtotal += calculateTotalPrice(products[i]);
+    }
+    return subtotal;
 }

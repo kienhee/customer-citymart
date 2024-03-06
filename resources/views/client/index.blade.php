@@ -562,8 +562,8 @@
                     <div class="col-12">
                         <div class="section-title">
                             <h2>{{ $item['category_name'] }}</h2>
-                            <a href="{{ route('shop', ['category' => $item['category_name']]) }}" class="solid-btn">all <i
-                                    class="fa-solid fa-angle-right"></i></a>
+                            <a href="{{ route('shop', ['category' => $item['category_name']]) }}" class="solid-btn">all
+                                <i class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -575,8 +575,10 @@
                                     @foreach ($item['products'] as $item)
                                         <div class="swiper-slide">
                                             <x-product id="{{ $item['id'] }}" images="{{ $item['images'] }}"
-                                                name="{{ $item['name'] }}" slug="{{ $item['slug'] }}"
-                                                price="{{ $item['price'] }}" discount="{{ $item['discount'] }}" />
+                                                name="{{ $item['name'] }}" description="{{ $item['description'] }}"
+                                                slug="{{ $item['slug'] }}" price="{{ $item['price'] }}"
+                                                discount="{{ $item['discount'] }}" quantity="{{ $item['quantity'] }}"
+                                                colors="{{ $item['colors'] }}" sizes="{{ $item['sizes'] }}" />
                                         </div>
                                     @endforeach
                                 </div>

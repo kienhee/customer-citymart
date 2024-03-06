@@ -137,10 +137,17 @@ class ClientController extends Controller
         // Lưu giỏ hàng vào session
         session()->put('cart', $cart);
 
-        return response()->json(['title' => 'Xoá thành công!', 'message' => 'Tiếp tục mua sắm'], 200);
+        return response()->json(['title' => 'Đã thêm vào giỏ hàng!', 'message' => 'Tiếp tục mua sắm', 'data' => $cart], 200);
     }
-
-
+    public function checkout()
+    {
+        $cart = Session::get('cart', []);
+        return view('client.checkout', compact('cart'));
+    }
+    public function handleCheckout(Request $request)
+    {
+        dd($request->all());
+    }
     public function news()
     {
         return view('client.news');

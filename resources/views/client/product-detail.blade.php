@@ -42,15 +42,16 @@
                             {{ $product->name }}
                         </h2>
                         <div class="product-detail__meta">
-                            @if ($product->quantity > 0)
-                                <li>
-                                    <div class="stock__item">Còn hàng</div>
-                                </li>
-                            @else
-                                <li>
-                                    <div class="stock__item  bg-danger text-white">Hết hàng</div>
-                                </li>
-                            @endif
+                            <ul class="right-meta">
+                                @if ($product->quantity > 0)
+                                    <li>
+                                        <div class="stock__item">Còn hàng</div>
+                                    </li>
+                                @else
+                                    <li>
+                                        <div class="stock__item  bg-danger text-white">Hết hàng</div>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                         @if ($product->discount > 0)
@@ -89,6 +90,7 @@
                             </div>
                         @endif
                         @if ($product->sizes)
+
                             <div class="product-detail__attr">
                                 <div class="product__attr">
                                     <span class="product-detail--stroke">Loại</span>
@@ -124,7 +126,7 @@
                                 <button class="btn btn-primary btn-outline" id="addTocart">Thêm vào giỏ hàng</button>
                             </div>
                             <div class="item">
-                                <a href="#" class="btn btn-primary btn-filled">Mua ngay</a>
+                                <button class="btn btn-primary btn-filled">Mua ngay</button>
                             </div>
                         </div>
                         <div class="product-detail__accordion accordion" id="productDetailAccordion">
@@ -220,9 +222,11 @@
                             <div class="swiper-wrapper">
                                 @foreach ($ReletedProducts as $item)
                                     <div class="swiper-slide">
-                                        <x-product id="{{ $item['id'] }}" images="{{ $item['images'] }}"
-                                            name="{{ $item['name'] }}" slug="{{ $item['slug'] }}"
-                                            price="{{ $item['price'] }}" discount="{{ $item['discount'] }}" />
+                                        <x-product id="{{ $item->id }}" images="{{ $item->images }}"
+                                            name="{{ $item->name }}" description="{{ $item->description }}"
+                                            slug="{{ $item->slug }}" price="{{ $item->price }}"
+                                            discount="{{ $item->discount }}" quantity="{{ $item->quantity }}"
+                                            colors="{{ $item->colors }}" sizes="{{ $item->sizes }}" />
                                     </div>
                                 @endforeach
                             </div>

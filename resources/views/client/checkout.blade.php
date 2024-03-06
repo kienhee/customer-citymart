@@ -11,40 +11,48 @@
                         <div class="form__wrapper">
                             <div class="form-group">
                                 <label for="name">Họ và tên: <span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control"
-                                    placeholder="Nhập họ tên đầy đủ" />
+                                <input type="text" name="name" id="name" value="{{ old('name') }}"
+                                    class="form-control" placeholder="Nhập họ tên đầy đủ" />
                                 @error('name')
                                     <p class="text-danger my-2">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="email">Email: <span class="text-danger">*</span></label>
+                                <input type="text" name="email" id="email" value="{{ old('email') }}"
+                                    class="form-control" placeholder="Nhập họ tên đầy đủ" />
+                                @error('email')
+                                    <p class="text-danger my-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="phone">Số điện thoại: <span class="text-danger">*</span></label>
-                                <input type="text" name="phone" id="phone" class="form-control"
-                                    placeholder="Nhập số điện thoại" />
+                                <input type="text" name="phone" id="phone"
+                                    value="{{ old('phone') }}"class="form-control" placeholder="Nhập số điện thoại" />
                                 @error('phone')
                                     <p class="text-danger my-2">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="address">Địa chỉ giao hàng: <span class="text-danger">*</span></label>
-                                <input type="text" name="address" id="address" class="form-control"
-                                    placeholder="Nhập số nhà, tên đường" />
+                                <input type="text" name="address" id="address" value="{{ old('address') }}"
+                                    class="form-control" placeholder="Nhập số nhà, tên đường" />
                                 @error('address')
                                     <p class="text-danger my-2">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="note">Ghi chú: <span class="text-danger">*</span></label>
-                                <textarea name="note" id="note" rows="5" class="form-control" placeholder="Nội dung ghi chú"></textarea>
-                                @error('note')
+                                <label for="notes">Ghi chú:</label>
+                                <textarea name="notes" id="notes" rows="5" class="form-control" placeholder="Nội dung ghi chú">{{ old('notes') }}</textarea>
+                                @error('notes')
                                     <p class="text-danger my-2">{{ $message }}</p>
                                 @enderror
                             </div>
                             <h5 class="sub-title">Phương thức thanh toán</h5>
                             <div class="form-group">
-                                <input type="radio" name="delivery_type" id="cop" class="delivery-input"
-                                    value="cop" checked />
-                                <label for="cop">
+                                <input type="radio" name="delivery_type" id="cash" class="delivery-input"
+                                    value="cash" checked />
+                                <label for="cash">
                                     <span class="icon">
                                         <img src="{{ asset('client-frontend') }}/assets/images/cash.png" alt="cash" />
                                     </span>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -142,11 +144,66 @@ class ClientController extends Controller
     public function checkout()
     {
         $cart = Session::get('cart', []);
+        if (calculateTotal($cart) == 0) {
+            return redirect()->route('shop');
+        }
         return view('client.checkout', compact('cart'));
     }
     public function handleCheckout(Request $request)
     {
-        dd($request->all());
+
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'notes' => 'nullable',
+            'delivery_type' => 'required'
+        ], [
+            'name.required' => 'Vui lòng nhập họ và tên đầy đủ.',
+            'email.required' => 'Vui lòng nhập địa chỉ email.',
+            'email.email' => 'Địa chỉ email không hợp lệ.',
+            'address.required' => 'Vui lòng nhập địa chỉ.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.numeric' => 'Số điện thoại phải là số.',
+            'delivery_type.required' => 'Vui lòng chọn phương thức thanh toán.',
+        ]);
+        $cart = Session::get('cart', []);
+        $quantity = 0;
+        foreach ($cart as $item) {
+            $quantity += $item['quantity'];
+        }
+        $data['total'] = calculateTotal($cart);
+        $data['quantity'] = $quantity;
+
+        $order = Order::create($data);
+        if ($order) {
+            $orderDetail = [];
+            foreach ($cart as $item) {
+                if ($item['discount'] > 0) {
+                    $price = ((100 - $item['discount']) / 100) * $item['price'];
+                } else {
+                    $price = $item['price'];
+                }
+                $orderDetail[] = [
+                    'orderID' => $order->id,
+                    'productID' => $item['product_id'],
+                    'size' => $item['size'],
+                    'color' => $item['color'],
+                    'quantity' => $item['quantity'],
+                    'price' => $price
+                ];
+            }
+            $checkProcess = OrderDetail::insert($orderDetail);
+            if ($checkProcess) {
+                Session::forget('cart');
+                dd($checkProcess);
+            }
+        }
+    }
+    public function tracking()
+    {
+        return view('client.tracking');
     }
     public function news()
     {

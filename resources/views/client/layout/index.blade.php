@@ -105,8 +105,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
     {{-- Scroll-top-end --}}
     {{-- thông báo --}}
     <script src="
-                    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                    "></script>
+                        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                        "></script>
     {{-- JS --}}
     <script src="{{ asset('client-frontend') }}/assets/js/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('client-frontend') }}/assets/js/popper.min.js"></script>
@@ -120,6 +120,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
     <script src="{{ asset('client-frontend') }}/assets/js/swiper-bundle.min.js"></script>
     <script src="{{ asset('client-frontend') }}/assets/js/scripts.js"></script>
     <script src="{{ asset('client-frontend') }}/assets/js/cart.js"></script>
+    <script src="{{ asset('client-frontend') }}/assets/js/filterShop.js"></script>
 
     @yield('script')
 

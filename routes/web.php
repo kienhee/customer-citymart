@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
@@ -36,6 +37,7 @@ Route::prefix('/')->group(
         Route::post('handle-actions-cart', [ClientController::class, 'handleActionsCart'])->name('handle-actions-cart');
         Route::get('checkout', [ClientController::class, 'checkout'])->name('checkout');
         Route::post('handle-checkout', [ClientController::class, 'handleCheckout'])->name('handleCheckout');
+        Route::get('checkout/tracking', [ClientController::class, 'tracking'])->name('tracking');
         Route::get('news', [ClientController::class, 'news'])->name('news');
         Route::get('contact', [ClientController::class, 'contact'])->name('contact');
     }
@@ -78,7 +80,11 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
         Route::put('/edit/{id}', [SizeController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [SizeController::class, 'delete'])->name('delete');
     });
-
+    Route::prefix('orders')->name('orders.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/list', [OrderController::class, 'list'])->name('list');
+        Route::get('/view/{order}', [OrderController::class, 'orderDetail'])->name('orderDetail');
+    });
     Route::prefix('users')->name('users.')->middleware('can:users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index')->can('view', User::class);
         Route::get('/list', [UserController::class, 'list'])->name('list')->can('view', User::class);

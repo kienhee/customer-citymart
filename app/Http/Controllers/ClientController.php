@@ -197,12 +197,16 @@ class ClientController extends Controller
             $checkProcess = OrderDetail::insert($orderDetail);
             if ($checkProcess) {
                 Session::forget('cart');
-                dd($checkProcess);
+
+                return redirect()->route('tracking', ['name' => $request->name,  'address' => $request->address, 'delivery_type' => $request->delivery_type]);
             }
         }
     }
-    public function tracking()
+    public function tracking(Request $request)
     {
+        if (!$request->name || !$request->address || !$request->delivery_type) {
+            return redirect()->route('shop');
+        }
         return view('client.tracking');
     }
     public function news()

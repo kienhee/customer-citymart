@@ -30,6 +30,13 @@
             'children' => [],
         ],
         [
+            'name' => 'Đơn hàng',
+            'classIcon' => 'bx bxs-cart-alt',
+            'route' => 'dashboard.orders.index',
+            'can' => '',
+            'children' => [],
+        ],
+        [
             'name' => 'Bảng màu',
             'classIcon' => 'bx bx-palette',
             'route' => 'dashboard.colors.index',

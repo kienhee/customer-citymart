@@ -10,13 +10,13 @@
                     <div class="section-title mb-30">
                         <h2>Products</h2>
                         <div class="shortBy-select select__style d-lg-none d-flex">
-                            <label for="sortBy">Sort by:</label>
+                           <label for="sortBy">sắp xếp:</label>
                             <select name="sortBy" id="sortBy">
-                                <option value="0">Relevance</option>
-                                <option value="0">Name (A-Z)</option>
-                                <option value="0">Name (Z-A)</option>
-                                <option value="0">Date</option>
-                                <option value="0">Sale</option>
+                                <option value="all">Tất cả</option>
+                                <option value="price(ASC)">Giá tăng dần</option>
+                                <option value="price(DESC)">Giá giảm dần</option>
+                                <option value="Date">Ngày tạo</option>
+                                <option value="Sale">Giảm giá</option>
                             </select>
                         </div>
                     </div>
@@ -89,8 +89,8 @@
                         </div>
 
                         <div class="shortBy-select select__style d-lg-flex d-none">
-                            <label for="sortBy2">sắp xếp:</label>
-                            <select name="sortBy" id="sortBy2">
+                            <label for="sortBy">sắp xếp:</label>
+                            <select name="sortBy" id="sortBy">
                                 <option value="all">Tất cả</option>
                                 <option value="price(ASC)">Giá tăng dần</option>
                                 <option value="price(DESC)">Giá giảm dần</option>

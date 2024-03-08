@@ -27,6 +27,8 @@ class SettingController extends Controller
             'instagram' => 'nullable|url',
             'linkedin' => 'nullable|url',
             'swish' => 'nullable',
+            'footer_info' => 'nullable',
+            'map' => 'nullable',
             'isCalendar' => 'nullable|boolean',
             'isKanban' => 'nullable|boolean',
         ], [

@@ -158,6 +158,51 @@
 
                         </div>
                     </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title m-0"><i class='bx bx-link'></i> Nhúng map</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <textarea name="map"
+                                        class="form-control @error('map')
+                                        is-invalid
+                                    @enderror "
+                                        rows="5">{{ old('map') ?? $setting->map }}</textarea>
+                                    @error('map')
+                                        <p class="text-danger my-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title m-0"><i class='bx bx-link'></i> Thông tin chân trang</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <textarea name="footer_info"
+                                        class="form-control @error('footer_info')
+                                        is-invalid
+                                    @enderror "
+                                        rows="10">{{ old('footer_info') ?? $setting->footer_info }}</textarea>
+                                    @error('footer_info')
+                                        <p class="text-danger my-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
                     <div class="d-flex justify-content-end gap-3">
                         <button type="reset" class="btn btn-label-secondary">Reset</button>
                         <button class="btn btn-primary">Save</button>

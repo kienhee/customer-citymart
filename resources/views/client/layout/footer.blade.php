@@ -5,30 +5,27 @@
                   <div class="footer__wrapper">
                       <div class="footer__widget d-block">
                           <div class="footer__logo">
-                              <a href="home.html"><img src="{{ asset('client-frontend') }}/assets/images/logo/logo.png"
+                              <a href="/"><img src="{{ asset('client-frontend') }}/assets/images/logo/logo.png"
                                       alt="logo" /></a>
                           </div>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At praesent eget mauris felis
-                              scelerisque enim enim, magna.</p>
+                          @if ($footer_info)
+                              <p>{{ $footer_info }}</p>
+                          @endif
+
                       </div>
                   </div>
               </div>
+
               <div class="col-lg-2 col-md-3 col-sm-12">
                   <div class="footer__wrapper">
                       <div class="footer__widget">
                           <div class="title">
-                              <h5>Product</h5>
+                              <h5>Giới thiệu</h5>
                           </div>
                           <ul>
-                              <li><a href="#">Shirt</a></li>
-                              <li>
-                                  <a href="#">Groceries <span class="danger">Hot</span></a>
-                              </li>
-                              <li>
-                                  <a href="#">Computer <span>New</span></a>
-                              </li>
-                              <li><a href="#">Electronics</a></li>
-                              <li><a href="#">Sports</a></li>
+                              <li><a href="/">Trang chủ</a></li>
+                              <li><a href="{{ route('shop') }}">Cửa hàng</a></li>
+                              <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                           </ul>
                       </div>
                   </div>
@@ -37,52 +34,22 @@
                   <div class="footer__wrapper">
                       <div class="footer__widget">
                           <div class="title">
-                              <h5>Company</h5>
+                              <h5>Danh mục sản phẩm</h5>
                           </div>
                           <ul>
-                              <li><a href="#">About us</a></li>
-                              <li><a href="#">Careers</a></li>
-                              <li><a href="#">News</a></li>
-                              <li><a href="#">Media kit</a></li>
-                              <li><a href="#">Contact</a></li>
+                              @foreach (categoriesChildren() as $category)
+                                  <li><a
+                                          href="{{ route('shop', ['category' => $category->name]) }}">{{ $category->name }}</a>
+                                  </li>
+                              @endforeach
+
                           </ul>
                       </div>
                   </div>
               </div>
-              <div class="col-lg-2 col-md-3 col-sm-12">
-                  <div class="footer__wrapper">
-                      <div class="footer__widget">
-                          <div class="title">
-                              <h5>Resources</h5>
-                          </div>
-                          <ul>
-                              <li><a href="#">Blog</a></li>
-                              <li>
-                                  <a href="#">Newsletter <span>Best</span></a>
-                              </li>
-                              <li><a href="#">Help centre</a></li>
-                              <li><a href="#">Tutorials</a></li>
-                              <li><a href="#">Support</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-2 col-md-3 col-sm-12">
-                  <div class="footer__wrapper">
-                      <div class="footer__widget">
-                          <div class="title">
-                              <h5>Legal</h5>
-                          </div>
-                          <ul>
-                              <li><a href="#">Terms</a></li>
-                              <li><a href="#">Privacy</a></li>
-                              <li><a href="#">Licenses</a></li>
-                              <li><a href="#">Settings</a></li>
-                              <li><a href="#">Contact</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
+
+
+
           </div>
           <div class="row">
               <div class="col-12">
@@ -94,7 +61,7 @@
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                       data-bs-target="#flush-collapse01" aria-expanded="false"
                                       aria-controls="flush-collapse01">
-                                      Product
+                                      Giới thiệu
                                   </button>
                               </h2>
                               <div id="flush-collapse01" class="accordion-collapse collapse"
@@ -102,15 +69,9 @@
                                   <div class="accordion-body">
                                       <div class="footer__widget">
                                           <ul>
-                                              <li><a href="#">Shirt</a></li>
-                                              <li>
-                                                  <a href="#">Groceries <span class="danger">Hot</span></a>
-                                              </li>
-                                              <li>
-                                                  <a href="#">Computer <span>New</span></a>
-                                              </li>
-                                              <li><a href="#">Electronics</a></li>
-                                              <li><a href="#">Sports</a></li>
+                                              <li><a href="/">Trang chủ</a></li>
+                                              <li><a href="{{ route('shop') }}">Cửa hàng</a></li>
+                                              <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                                           </ul>
                                       </div>
                                   </div>
@@ -121,7 +82,7 @@
                                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                       data-bs-target="#flush-collapse02" aria-expanded="false"
                                       aria-controls="flush-collapse02">
-                                      Company
+                                      Danh mục sản phẩm
                                   </button>
                               </h2>
                               <div id="flush-collapse02" class="accordion-collapse collapse"
@@ -129,11 +90,11 @@
                                   <div class="accordion-body">
                                       <div class="footer__widget">
                                           <ul>
-                                              <li><a href="#">About us</a></li>
-                                              <li><a href="#">Careers</a></li>
-                                              <li><a href="#">News</a></li>
-                                              <li><a href="#">Media kit</a></li>
-                                              <li><a href="#">Contact</a></li>
+                                              @foreach (categoriesChildren() as $category)
+                                                  <li><a
+                                                          href="{{ route('shop', ['category' => $category->name]) }}">{{ $category->name }}</a>
+                                                  </li>
+                                              @endforeach
                                           </ul>
                                       </div>
                                   </div>

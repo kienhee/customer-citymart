@@ -5,7 +5,7 @@
     $facebook = $info->facebook;
     $instagram = $info->instagram;
     $twitter = $info->twitter;
-
+    $footer_info = $info->footer_info;
     $menu = [
         [
             'name' => 'Trang chủ',
@@ -22,21 +22,17 @@
             'children' => [],
             'link' => 'shop',
         ],
-        [
-            'name' => 'Sản Phẩm Khuyến Mãi',
-            'children' => [],
-            'link' => 'index',
-        ],
+
         // [
         // 'name' => 'Tin Tức',
         // 'children' => [],
         // 'link' => 'news',
         // ],
-        // [
-        // 'name' => 'Liên hệ',
-        // 'children' => [],
-        // 'link' => 'contact',
-        // ],
+        [
+            'name' => 'Liên hệ',
+            'children' => [],
+            'link' => 'contact',
+        ],
     ];
 @endphp
 <!DOCTYPE html>
@@ -83,6 +79,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
         'facebook' => $facebook,
         'instagram' => $instagram,
         'twitter' => $twitter,
+        'footer_info' => $footer_info,
     ])
     {{-- Footer Section End --}}
 
@@ -105,8 +102,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
     {{-- Scroll-top-end --}}
     {{-- thông báo --}}
     <script src="
-                        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                        "></script>
+                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                        "></script>
     {{-- JS --}}
     <script src="{{ asset('client-frontend') }}/assets/js/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('client-frontend') }}/assets/js/popper.min.js"></script>

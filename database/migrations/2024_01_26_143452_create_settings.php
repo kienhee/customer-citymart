@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('swish')->nullable();
+            $table->string('footer_info')->nullable();
+            $table->text('map');
             $table->boolean('isCalendar')->default(false);
             $table->boolean('isKanban')->default(false);
             $table->timestamp('created_at')->useCurrent();

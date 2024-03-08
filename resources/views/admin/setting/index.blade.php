@@ -84,6 +84,18 @@
                                         <p class="text-danger my-1">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label" for="swish">swish</label>
+                                    <input type="text" id="swish"
+                                        class="form-control @error('swish')
+                                        is-invalid
+                                    @enderror"
+                                        name="swish" value="{{ old('swish') ?? $setting->swish }}"
+                                        placeholder="Enter your swish" />
+                                    @error('swish')
+                                        <p class="text-danger my-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
 
                             </div>
                         </div>

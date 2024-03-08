@@ -26,6 +26,7 @@ class SettingController extends Controller
             'twitter' => 'nullable|url',
             'instagram' => 'nullable|url',
             'linkedin' => 'nullable|url',
+            'swish' => 'nullable',
             'isCalendar' => 'nullable|boolean',
             'isKanban' => 'nullable|boolean',
         ], [

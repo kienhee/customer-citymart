@@ -84,6 +84,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/list', [OrderController::class, 'list'])->name('list');
         Route::get('/view/{order}', [OrderController::class, 'orderDetail'])->name('orderDetail');
+        Route::post('/change-status/{id}', [OrderController::class, 'changeStatus'])->name('changeStatus');
     });
     Route::prefix('users')->name('users.')->middleware('can:users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index')->can('view', User::class);

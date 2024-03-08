@@ -59,9 +59,9 @@ class ColorController extends Controller
 
         $check = Color::where('id', $id)->update($validate);
         if ($check) {
-            return back()->with('msgSuccess', 'Thêm thành công');
+            return back()->with('msgSuccess', 'Cập nhật thành công');
         }
-        return back()->with('msgError', 'Thêm thất bại!');
+        return back()->with('msgError', 'Cập nhật thất bại!');
     }
     public function delete($id)
     {

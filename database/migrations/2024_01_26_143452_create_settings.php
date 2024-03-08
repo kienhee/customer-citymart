@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('swish')->nullable();
             $table->boolean('isCalendar')->default(false);
             $table->boolean('isKanban')->default(false);
             $table->timestamp('created_at')->useCurrent();

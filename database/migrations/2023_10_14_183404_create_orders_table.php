@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('order_id',9);
             $table->string('name');
             $table->string('email');
             $table->string('phone');
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->string('notes')->nullable();
             $table->integer('total');
             $table->integer('quantity');
-            $table->boolean('status')->default(false);
+            $table->integer('status')->default(0);
             $table->string('delivery_type');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

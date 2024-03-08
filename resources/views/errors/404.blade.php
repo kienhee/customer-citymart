@@ -1,14 +1,25 @@
-@extends('admin.layout.error')
+@extends('client.layout.index')
 @section('content')
-    <div class="misc-wrapper">
-        <h2 class="mb-2 mx-2">Page Not Found :(</h2>
-        <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server.</p>
-        <a href="/" class="btn btn-primary">Back to home</a>
-        <div class="mt-3">
-            <img src="{{ asset('admin-frontend') }}/assets/img/illustrations/page-misc-error-light.png"
-                alt="page-misc-error-light" width="500" class="img-fluid"
-                data-app-dark-img="illustrations/page-misc-error-dark.png"
-                data-app-light-img="illustrations/page-misc-error-light.png" />
+    < <section class="error-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 m-auto">
+                    <div class="error-page__wrapper text-center">
+                        <div class="error-page__image">
+                            <img src="{{ asset('client-frontend') }}/assets/images/error.png" alt="error" />
+                        </div>
+                        <div class="error-page__content">
+                            <p>
+                                The page you are looking for is not available or <br />
+                                doesn’t belong to this website!
+                            </p>
+                            <div class="back-btn">
+                                <a href="{{ route('shop') }}" class="btn btn-primary">Tiếp tục mua sắm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-@endsection
+        </section>
+    @endsection

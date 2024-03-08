@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Group;
+use App\Models\Order;
 use App\Models\Setting;
 use App\Models\Size;
 use Illuminate\Support\Facades\Auth;
@@ -117,4 +118,13 @@ function calculateTotal($items)
   }
 
   return $total;
+}
+
+function generateOrderId()
+{
+  do {
+    $randomId = mt_rand(100000, 999999); // Tạo số ngẫu nhiên gồm 6 chữ số
+  } while (Order::where('order_id', $randomId)->exists()); // Kiểm tra xem số đã tồn tại chưa
+
+  return $randomId;
 }

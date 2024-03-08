@@ -19,11 +19,10 @@
                   <h3>Price</h3>
               </div>
               <div class="cart__items" id="cart__items">
-
               </div>
               <!-- Cart Items End -->
               <!-- Cart SubTotal Start -->
-              <ul class="cart__subtotal">
+              {{-- <ul class="cart__subtotal">
                   <li>
                       <span class="label">Subtotal</span>
                       <span class="value" id="cart__subtotal">0 Kr</span>
@@ -32,19 +31,20 @@
                       <span class="label">Shipping:</span>
                       <span class="value">$15.22</span>
                   </li>
-              </ul>
+              </ul> --}}
               <!-- Cart SubTotal End -->
               <!-- Total Start -->
+              <hr>
               <div class="cart__total">
                   <h3>Total <span>(Incl. VAT)</span></h3>
-                  <div class="total">$60.22</div>
+                  <div class="total" id="cart__subtotal">0 Kr</div>
               </div>
               <!-- Total End -->
           </div>
           <!-- Cart Button Start -->
-          <div class="cart__btns">
-              <a href="{{ route('checkout') }}" class="btn btn-primary">Go To Checkout</a>
-              <a href="#" class="btn btn-outline">Continue shopping</a>
+          <div class="cart__btns ">
+              <a href="{{ route('checkout') }}" class="btn btn-primary">Thanh toán</a>
+              <a href="#" class="btn btn-outline">Tiếp tục mua sắm</a>
           </div>
           <!-- Cart Button End -->
       </div>

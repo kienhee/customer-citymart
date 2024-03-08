@@ -54,13 +54,27 @@ class ClientController extends Controller
                 ->where('price', '<=', $maxPrice);
         }
 
-
-        $products = $result->orderBy('created_at', 'desc')->paginate(10);
+        if ($request->has('filter') && $request->filter != null) {
+            $filter = $request->filter;
+            if ($filter == "price(ASC)") {
+                $result->orderBy('price', 'asc');
+            } elseif ($filter == "price(DESC)") {
+                $result->orderBy('price', 'desc');
+            } elseif ($filter == "Sale") {
+                $result->where('discount', '>', 0)->orderBy('discount', 'desc');
+            } elseif ($filter == "Date") {
+                $result->orderBy('created_at', 'asc');
+            }
+        }
+        $products = $result->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
         return view('client.shop', compact('products'));
     }
     public function productDetail($slug)
     {
         $product = Product::where('slug', $slug)->first();
+        if (!$product) {
+            abort(404);
+        }
         $ReletedProducts = Product::where('category_id', $product->category_id)->where('slug', '<>', $slug)->limit(10)->get();
         return view('client.product-detail', compact('product', 'ReletedProducts'));
     }
@@ -158,7 +172,8 @@ class ClientController extends Controller
             'address' => 'required',
             'phone' => 'required|numeric',
             'notes' => 'nullable',
-            'delivery_type' => 'required'
+            'delivery_type' => 'required',
+            'order_id' => 'required',
         ], [
             'name.required' => 'Vui lòng nhập họ và tên đầy đủ.',
             'email.required' => 'Vui lòng nhập địa chỉ email.',
@@ -167,6 +182,7 @@ class ClientController extends Controller
             'phone.required' => 'Vui lòng nhập số điện thoại.',
             'phone.numeric' => 'Số điện thoại phải là số.',
             'delivery_type.required' => 'Vui lòng chọn phương thức thanh toán.',
+            'order_id.required' => 'Vui lòng reload lại trang web.',
         ]);
         $cart = Session::get('cart', []);
         $quantity = 0;
@@ -198,13 +214,13 @@ class ClientController extends Controller
             if ($checkProcess) {
                 Session::forget('cart');
 
-                return redirect()->route('tracking', ['name' => $request->name,  'address' => $request->address, 'delivery_type' => $request->delivery_type]);
+                return redirect()->route('tracking', ['name' => $request->name, 'orderID' => $order->order_id, 'address' => $request->address, 'delivery_type' => $request->delivery_type]);
             }
         }
     }
     public function tracking(Request $request)
     {
-        if (!$request->name || !$request->address || !$request->delivery_type) {
+        if (!$request->name || !$request->address || !$request->delivery_type || !$request->orderID) {
             return redirect()->route('shop');
         }
         return view('client.tracking');

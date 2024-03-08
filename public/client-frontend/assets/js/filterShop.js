@@ -43,3 +43,10 @@ function removeFilter(param) {
     // Chuyển hướng tới URL mới
     window.location.href = newUrl;
 }
+$("#sortBy2").change(function () {
+    let filter = $(this).val();
+    if (filter != "all") {
+        addFillter("filter", filter);
+    }
+    // Thực hiện các hành động khác dựa trên giá trị đã chọn
+});

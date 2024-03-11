@@ -15,25 +15,13 @@
                 </div>
                 <!-- Header Toggle End -->
                 <div class="header__logo">
-                    <a href="{{route('index')}}"><img src="{{ asset('client-frontend') }}/assets/images/logo/logo.png"
+                    <a href="{{ route('index') }}"><img src="{{ asset('client-frontend') }}/assets/images/logo/logo.png"
                             alt="logo" /> </a>
                 </div>
                 <div class="search__form__wrapper">
-                    <form action="search.html" method="post" class="search__form">
-                        <div class="select__style">
-                            <select name="filter" class="category-select">
-                                <option value="1">Danh mục</option>
-                                <option value="2">Groceries</option>
-                                <option value="3">Computer</option>
-                                <option value="4">Women</option>
-                                <option value="5">Electronics</option>
-                                <option value="6">Men</option>
-                                <option value="7">Baby</option>
-                                <option value="8">Sports</option>
-                            </select>
-                        </div>
-                        <input type="search" class="form-control" name="search"
-                            placeholder="Tìm kiếm trong danh mục...." />
+                    <form action="{{ route('shop') }}" method="get" class="search__form ">
+                        <input type="search" class="form-control " name="search"
+                            placeholder="Tìm kiếm tên sản phẩm...." value="{{ request()->search }}" />
                         <button type="submit">
                             <img src="{{ asset('client-frontend') }}/assets/images/search.png" alt="search" />
                         </button>
@@ -82,8 +70,9 @@
             <!-- Header Top End -->
         </div>
         <!-- Search Form -->
-        <form action="search.html" method="post" class="search__form full__width d-lg-none d-flex">
-            <input type="search" class="form-control" name="search" placeholder="What are you looking for..." />
+        <form action="{{ route('shop') }}" method="get" class="search__form full__width d-lg-none d-flex">
+            <input type="search" class="form-control" name="search" placeholder="Tìm kiếm tên sản phẩm...."
+                value="{{ request()->search }}" />
             <button type="submit">
                 <img src="{{ asset('client-frontend') }}/assets/images/search.png" alt="search" />
             </button>

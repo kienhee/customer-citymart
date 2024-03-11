@@ -16,6 +16,7 @@ class ClientController extends Controller
     {
         $categories = Category::where('category_id', "<>", 0)->get();
         $productsByCategory = [];
+        $productSale = Product::where('discount', '>', 0)->orderBy('created_at', 'desc')->limit(10)->get();
         foreach ($categories as $category) {
             $products = Product::where('category_id', $category->id)->limit(10)->orderBy('created_at', 'desc')->get()->toArray();
             if (!empty($products)) {
@@ -25,7 +26,7 @@ class ClientController extends Controller
                 ];
             }
         }
-        return view('client.index', compact('productsByCategory'));
+        return view('client.index', compact('productsByCategory', 'productSale'));
     }
     public function shop(Request $request)
     {
@@ -39,6 +40,9 @@ class ClientController extends Controller
             $result->where('category_id', $category->id);
         }
 
+        if ($request->has('search') && $request->search != null) {
+            $result->where('name', 'like', '%' . $request->search . '%');
+        }
         if ($request->has('color') && $request->color != null) {
             $result->where('colors', 'like', '%' . $request->color . '%');
         }

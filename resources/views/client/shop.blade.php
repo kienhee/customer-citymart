@@ -11,7 +11,7 @@
                         <h2>Products</h2>
                         <div class="shortBy-select select__style d-lg-none d-flex">
                            <label for="sortBy">sắp xếp:</label>
-                            <select name="sortBy" id="sortBy">
+                            <select name="sortBy" class="sortBy">
                                 <option value="all">Tất cả</option>
                                 <option value="price(ASC)">Giá tăng dần</option>
                                 <option value="price(DESC)">Giá giảm dần</option>
@@ -90,7 +90,7 @@
 
                         <div class="shortBy-select select__style d-lg-flex d-none">
                             <label for="sortBy">sắp xếp:</label>
-                            <select name="sortBy" id="sortBy">
+                            <select name="sortBy" class="sortBy">
                                 <option value="all">Tất cả</option>
                                 <option value="price(ASC)">Giá tăng dần</option>
                                 <option value="price(DESC)">Giá giảm dần</option>

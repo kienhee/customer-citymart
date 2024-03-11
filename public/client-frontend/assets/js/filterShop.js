@@ -50,7 +50,7 @@ function removeFilter(param) {
 //     }
 //     // Thực hiện các hành động khác dựa trên giá trị đã chọn
 // });
-$("#sortBy").change(function () {
+$(".sortBy").change(function () {
     let filter = $(this).val();
     if (filter != "all") {
         addFillter("filter", filter);

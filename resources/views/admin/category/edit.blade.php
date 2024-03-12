@@ -13,7 +13,7 @@
             <li class="breadcrumb-item active">{{ $category->name }}</li>
         </ol>
     </nav>
-    <form class="row" action="{{ route('dashboard.categories.update',$category->id) }}" method="POST">
+    <form class="row" action="{{ route('dashboard.categories.update', $category->id) }}" method="POST">
         @csrf
         @method('put')
         <div class="col-xl-4 col-lg-5 col-md-5">
@@ -60,7 +60,7 @@
                         @method('put')
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="name" class="form-label">Tên danh mục : <span
+                                <label for="name" class="form-label">Tên danh mục :(Vi) <span
                                         class="text-danger">*</span></label>
                                 <input class="form-control @error('name') is-invalid @enderror " type="text"
                                     id="name" name="name" value="{{ old('name') ?? $category->name }}"
@@ -70,6 +70,16 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-md-6">
+                                <label for="name_se" class="form-label">Tên danh mục :(Se) <span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control @error('name_se') is-invalid @enderror " type="text"
+                                    id="name_se" name="name_se" value="{{ old('name_se') ?? $category->name_se }}"
+                                    placeholder="Tên danh mục" autofocus />
+                                @error('name_se')
+                                    <p class="text-danger my-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 ">
                                 <label for="category_id" class="form-label">Thuộc danh mục: <span
                                         class="text-danger">*</span></label>
                                 <select class="form-select @error('category_id') is-invalid @enderror" name="category_id"

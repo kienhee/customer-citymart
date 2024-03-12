@@ -86,7 +86,8 @@
                         <thead>
                             <tr>
                                 <th class="px-1 text-center" style="width: 50px">#ID</th>
-                                <th>Tên danh mục</th>
+                                <th>Tên danh mục (vi)</th>
+                                <th>Tên danh mục (se)</th>
                                 <th>Trạng thái</th>
                                 <th>Ngày tạo</th>
                                 <th>Cài đặt</th>
@@ -115,7 +116,17 @@
                                                 <small class="text-muted">{{ $item->description }}</small>
                                             </div>
                                         </td>
+                                        <td>
+                                            @if ($item->name_se)
+                                                <a href="{{ route('dashboard.categories.edit', $item->id) }}"
+                                                    title="Click xem thêm"
+                                                    style="color: inherit"><strong>{{ $item->name_se }}</strong>
+                                                </a>
+                                            @else
+                                                Chưa thêm tiếng Thuỵ Điển
+                                            @endif
 
+                                        </td>
 
                                         <td><span
                                                 class="badge  me-1 {{ $item->deleted_at == null ? 'bg-label-success ' : ' bg-label-primary' }}">{{ $item->deleted_at == null ? 'Hoạt động' : 'Đang ẩn' }}</span>

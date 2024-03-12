@@ -42,17 +42,22 @@ class CategoryController extends Controller
         $validate = $request->validate([
             "cover" => "nullable",
             'name' => 'required|max:50|unique:categories,name',
+            'name_se' => 'required|max:50|unique:categories,name_se',
             'category_id' => 'required|numeric',
             'description' => 'max:255',
         ], [
             "name.required" => "Vui lòng nhập trường này",
             "name.unique" => "Tên này đã tồn tại!",
             "name.max" => "Tối đa :max kí tự",
+            "name_se.required" => "Vui lòng nhập trường này",
+            "name_se.unique" => "Tên này đã tồn tại!",
+            "name_se.max" => "Tối đa :max kí tự",
             "description.max" => "Tối đa :max kí tự",
             "category_id.required" => "Vui lòng lựa chọn",
             "category_id.numeric" => "Giá trị phải là số",
         ]);
         $validate['slug'] = Str::slug($request->name);
+        $validate['slug_se'] = Str::slug($request->name_se);
         $check = Category::insert($validate);
         if ($check) {
             return back()->with('msgSuccess', 'Thêm thành công');
@@ -69,16 +74,21 @@ class CategoryController extends Controller
         $validate = $request->validate([
             "cover" => "nullable",
             'name' => 'required|max:50|unique:categories,name,' . $id,
+            'name_se' => 'required|max:50|unique:categories,name_se,' . $id,
             'category_id' => 'required|numeric',
             'description' => 'nullable',
         ], [
             "name.required" => "Vui lòng nhập trường này",
             "name.unique" => "Tên này đã tồn tại!",
             "name.max" => "Tối đa :max kí tự",
+            "name_se.required" => "Vui lòng nhập trường này",
+            "name_se.unique" => "Tên này đã tồn tại!",
+            "name_se.max" => "Tối đa :max kí tự",
             "category_id.required" => "Vui lòng lựa chọn",
             "category_id.numeric" => "Giá trị phải là số",
         ]);
         $validate['slug'] = Str::slug($request->name);
+        $validate['slug_se'] = Str::slug($request->name_se);
         $check = Category::where('id', $id)->update($validate);
         if ($check) {
             return back()->with('msgSuccess', 'Cập nhật thành công');
@@ -106,7 +116,7 @@ class CategoryController extends Controller
     {
         $CheckProductExists = Product::where('category_id', $id)->get();
         if ($CheckProductExists->count() > 0) {
-            return back()->with('msgError', 'Còn ' . $CheckProductExists->count() . ' sản phẩm trong bộ sưu tập , không thể xóa');
+            return back()->with('msgError', 'Có ' . $CheckProductExists->count() . ' sản phẩm trong danh mục này , không thể xóa');
         }
         $check = Category::onlyTrashed()->where('id', $id)->forceDelete();
         if ($check) {

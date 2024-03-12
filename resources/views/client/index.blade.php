@@ -206,10 +206,12 @@
             </div>
         </section>
     @endforeach
-
+    <div class="d-flex justify-content-center mb-5">
+        <a href="{{ route('shop') }}" class="btn btn-outline">{{ __('Xem thêm sản phẩm') }}</a>
+    </div>
     <!-- Trending Section End -->
 
-    {{-- <!-- CAll To Action Start -->
+    <!-- CAll To Action Start -->
     <section class="call__to__action">
         <div class="container">
             <div class="row">
@@ -220,7 +222,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet leo, porta aliquet non mattis.
                             Nulla ante pellentesque blandit fermentum.
                         </p>
-                        <form action="#" method="post" class="cta__form">
+                        <form action="javascript:void(0)" method="post" class="cta__form">
                             <input type="email" name="email" class="form-control" placeholder="Enter your email" />
                             <button type="submit" class="btn btn-primary">Notify me</button>
                         </form>
@@ -229,7 +231,7 @@
             </div>
         </div>
     </section>
-    <!-- CAll To Action End --> --}}
+    <!-- CAll To Action End -->
 
     <!-- Feature Section Start -->
     <section class="feature__section">

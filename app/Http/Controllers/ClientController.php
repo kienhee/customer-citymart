@@ -19,6 +19,7 @@ class ClientController extends Controller
         $productSale = Product::where('discount', '>', 0)->orderBy('created_at', 'desc')->limit(10)->get();
         foreach ($categories as $category) {
             $products = Product::where('category_id', $category->id)->limit(10)->orderBy('created_at', 'desc')->get()->toArray();
+            // count($products) >= 5 ->Khi nào cần thì cop vào
             if (!empty($products)) {
                 $productsByCategory[] = [
                     'category_name' => $category->name,

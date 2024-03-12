@@ -12,7 +12,7 @@
 @extends('client.layout.index')
 @section('title', __('Liên hệ'))
 @section('content')
-    <div class="container my-5">
+    <div class=" my-5">
         <section class="fullPage-section p-0">
             <div class="full-page__wrapper">
 
@@ -23,11 +23,7 @@
                         <div class="contact__info">
                             <h2 class="section__title"> {{ __('Hãy nói về tất cả mọi thứ!') }}</h2>
                             <p class="content">
-                                {{ __(' Chúng tôi ở đây để trợ giúp và trả lời bất kỳ câu hỏi nào bạn có thể có. Viết
-                                                                thư
-                                                                cho chúng tôi hoặc
-                                                                gọi cho chúng tôi. Chúng tôi sẽ phản hồi nhanh nhất có thể. Nhưng vâng, có thể mất tới 24
-                                                                giờ.') }}
+                                {{ __('Contact notice') }}
                             </p>
                             <div class="contact__meta">
                                 <ul class="contact__meta__list">

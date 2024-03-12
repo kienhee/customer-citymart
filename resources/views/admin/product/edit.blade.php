@@ -28,32 +28,61 @@
                     </a>
 
                 </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Tên sản phẩm: <span class="text-danger">*</span></label>
+                <div class="card-body row">
+                    <div class="mb-3 col-md-6">
+                        <label for="name" class="form-label">Tên sản phẩm(vi): <span
+                                class="text-danger">*</span></label>
                         <input class="form-control @error('name') is-invalid @enderror " type="text"
                             oninput="createSlug('name','slug')" id="name" name="name"
-                            value="{{ $product->name ?? old('name') }}" placeholder="Tên sản phẩm" autofocus />
+                            value="{{ $product->name ?? old('name') }}" placeholder="Tên sản phẩm - Tiếng việt" autofocus />
                         @error('name')
+                            <p class="text-danger my-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="name_se" class="form-label">Tên sản phẩm(se): <span
+                                class="text-danger">*</span></label>
+                        <input class="form-control @error('name_se') is-invalid @enderror " type="text"
+                            oninput="createSlug('name_se','slug')" id="name_se" name="name_se"
+                            value="{{ $product->name_se ?? old('name_se') }}" placeholder="Tên sản phẩm - Thuỵ Điển" />
+                        @error('name_se')
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="col-12 mb-3">
-                        <label for="description" class="form-label">Mô tả ngắn: </label>
+                        <label for="description" class="form-label">Mô tả ngắn(vi): </label>
 
                         <textarea class="form-control @error('description') is-invalid @enderror " id="description" rows="3"
-                            name="description" placeholder="Mô tả ngắn về sản phẩm">{{ $product->description ?? old('description') }}</textarea>
+                            name="description" placeholder="Mô tả ngắn về sản phẩm -  Tiếng Việt">{{ $product->description ?? old('description') }}</textarea>
                         @error('description')
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="content-product" class="form-label">Thông tin sản phẩm : <span
+                        <label for="description_se" class="form-label">Mô tả ngắn(se): </label>
+
+                        <textarea class="form-control @error('description_se') is-invalid @enderror " id="description_se" rows="3"
+                            name="description_se" placeholder="Mô tả ngắn về sản phẩm - Thuỵ Điển">{{ $product->description_se ?? old('description_se') }}</textarea>
+                        @error('description_se')
+                            <p class="text-danger my-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="content-product" class="form-label">Thông tin sản phẩm (vi): <span
                                 class="text-danger">*</span></label>
                         <textarea class="form-control my-editor @error('content') is-invalid @enderror " id="content-product" rows="3"
                             name="content" placeholder="Mô tả chi tiết: Thông tin xuất xứ, chất liệu, ..v.v">{{ $product->content ?? old('content') }}</textarea>
                         @error('content')
+                            <p class="text-danger my-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="content-product" class="form-label">Thông tin sản phẩm (se): <span
+                                class="text-danger">*</span></label>
+                        <textarea class="form-control my-editor @error('content_se') is-invalid @enderror " id="content-product" rows="3"
+                            name="content_se" placeholder="Mô tả chi tiết: Thông tin xuất xứ, chất liệu, ..v.v">{{ $product->content_se ?? old('content_se') }}</textarea>
+                        @error('content_se')
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -100,8 +129,9 @@
                 <div class="card-body">
                     <div class="mb-3 ">
                         <label for="quantity" class="form-label">Số lượng: <span class="text-danger">*</span></label>
-                        <input class="form-control @error('quantity') is-invalid @enderror " type="text" id="quantity"
-                            name="quantity" value="{{ $product->quantity ?? old('quantity') }}" placeholder="Số lượng" />
+                        <input class="form-control @error('quantity') is-invalid @enderror " type="text"
+                            id="quantity" name="quantity" value="{{ $product->quantity ?? old('quantity') }}"
+                            placeholder="Số lượng" />
                         @error('quantity')
                             <p class="text-danger my-1">{{ $message }}</p>
                         @enderror

@@ -47,8 +47,11 @@ class ProductController extends Controller
         // dd($request->all());
         $validate = $request->validate([
             'name' => 'required|max:255|unique:products,name',
+            'name_se' => 'required|max:255|unique:products,name_se',
             'description' => 'nullable|max:255',
+            'description_se' => 'nullable|max:255',
             'content' => 'required',
+            'content_se' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required|numeric',
             'colors' => 'nullable',
@@ -58,7 +61,9 @@ class ProductController extends Controller
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',
+            'name_se.required' => 'Vui lòng nhập trường này!',
             'content.required' => 'Vui lòng nhập trường này!',
+            'content_se.required' => 'Vui lòng nhập trường này!',
             'quantity.required' => 'Vui lòng nhập trường này!',
             'category_id.required' => 'Vui lòng nhập trường này!',
             'sizes.required' => 'Vui lòng nhập trường này!',
@@ -69,12 +74,16 @@ class ProductController extends Controller
             'price.numeric' => 'Giá trị phải là số!',
             'discount.numeric' => 'Giá trị phải là số!',
             'name.max' => 'Tối đa :max kí tự',
+            'name_se.max' => 'Tối đa :max kí tự',
             'description.max' => 'Tối đa :max kí tự',
+            'description_se.max' => 'Tối đa :max kí tự',
             'discount.max_digits' => 'Tối đa :max_digits số',
             'tax.max_digits' => 'Tối đa :max_digits số',
             'name.unique' => 'Tên này đã được sử dụng',
+            'name_se.unique' => 'Tên này đã được sử dụng',
         ]);
         $validate['slug'] = Str::slug($request->name);
+        $validate['slug_se'] = Str::slug($request->name_se);
 
         $check = Product::insert($validate);
         if ($check) {
@@ -92,9 +101,11 @@ class ProductController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|max:255|unique:products,name,' . $id,
-
+            'name_se' => 'required|max:255|unique:products,name_se,' . $id,
             'description' => 'nullable|max:255',
+            'description_se' => 'nullable|max:255',
             'content' => 'required',
+            'content_se' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required|numeric',
             'colors' => 'nullable',
@@ -104,7 +115,9 @@ class ProductController extends Controller
             'images' => 'required'
         ], [
             'name.required' => 'Vui lòng nhập trường này!',
+            'name_se.required' => 'Vui lòng nhập trường này!',
             'content.required' => 'Vui lòng nhập trường này!',
+            'content_se.required' => 'Vui lòng nhập trường này!',
             'quantity.required' => 'Vui lòng nhập trường này!',
             'category_id.required' => 'Vui lòng nhập trường này!',
             'sizes.required' => 'Vui lòng nhập trường này!',
@@ -115,10 +128,12 @@ class ProductController extends Controller
             'price.numeric' => 'Giá trị phải là số!',
             'discount.numeric' => 'Giá trị phải là số!',
             'name.max' => 'Tối đa :max kí tự',
-            'description.max' => 'Tối đa :max kí tự',
+            'name_se.max' => 'Tối đa :max kí tự',
+            'description_se.max' => 'Tối đa :max kí tự',
             'discount.max_digits' => 'Tối đa :max_digits số',
             'tax.max_digits' => 'Tối đa :max_digits số',
             'name.unique' => 'Tên này đã được sử dụng',
+            'name_se.unique' => 'Tên này đã được sử dụng',
 
         ]);
 

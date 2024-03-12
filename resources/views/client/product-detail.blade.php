@@ -45,11 +45,11 @@
                             <ul class="right-meta">
                                 @if ($product->quantity > 0)
                                     <li>
-                                        <div class="stock__item">Còn hàng</div>
+                                        <div class="stock__item">{{ __('Còn hàng') }}</div>
                                     </li>
                                 @else
                                     <li>
-                                        <div class="stock__item  bg-danger text-white">Hết hàng</div>
+                                        <div class="stock__item  bg-danger text-white">{{ __('Hết hàng') }}</div>
                                     </li>
                                 @endif
                             </ul>
@@ -73,7 +73,7 @@
                         @if ($product->colors)
                             <div class="product-detail__attr">
                                 <div class="product__attr">
-                                    <span class="product-detail--stroke">Màu sắc</span>
+                                    <span class="product-detail--stroke">{{ __('Màu sắc') }}</span>
                                     <ul class="product__attr--color">
                                         @foreach (explode(',', $product->colors) as $key => $color)
                                             <li>
@@ -93,7 +93,7 @@
 
                             <div class="product-detail__attr">
                                 <div class="product__attr">
-                                    <span class="product-detail--stroke">Loại</span>
+                                    <span class="product-detail--stroke">{{ __('Loại') }}</span>
                                     <ul class="product__attr--size">
                                         @foreach (json_decode($product->sizes) as $key => $size)
                                             <li>
@@ -108,7 +108,7 @@
                             </div>
                         @endif
                         <div class="product-detail__qty">
-                            <span class="product-detail--stroke">quantity</span>
+                            <span class="product-detail--stroke">{{ __('Số lượng') }}</span>
                             <div class="quantity quantity--outline">
                                 <button type="button" class="decressQnt">
                                     <span class="bar"></span>
@@ -123,13 +123,14 @@
 
                         <div class="product-detail__action ">
                             <div class="item">
-                                <button class="btn btn-primary btn-outline" id="addTocart">Thêm vào giỏ hàng</button>
+                                <button class="btn btn-primary btn-outline"
+                                    id="addTocart">{{ __('Thêm vào giỏ hàng') }}</button>
                             </div>
                             <div class="item">
-                                <button class="btn btn-primary btn-filled">Mua ngay</button>
+                                <button class="btn btn-primary btn-filled">{{ __('Mua ngay') }}</button>
                             </div>
                         </div>
-                        <div class="product-detail__accordion accordion" id="productDetailAccordion">
+                        {{-- <div class="product-detail__accordion accordion" id="productDetailAccordion">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="accordionOne">
                                     <button class="accordion-button product-detail--stroke collapsed" type="button"
@@ -170,7 +171,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -184,15 +185,15 @@
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                                         data-bs-target="#home-tab-pane" type="button" role="tab"
                                         aria-controls="home-tab-pane" aria-selected="true">
-                                        Thông tin sản phẩm
+                                        {{ __('Thông tin sản phẩm') }}
                                     </button>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                            aria-labelledby="home-tab" tabindex="0">
+                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                            tabindex="0">
                             <div class="content__body">
                                 {!! $product->content !!}
                             </div>
@@ -211,7 +212,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Sản phẩm liên quan</h2>
+                        <h2>{{ __('Sản phẩm liên quan') }}</h2>
                     </div>
                 </div>
             </div>

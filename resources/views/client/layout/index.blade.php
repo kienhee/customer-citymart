@@ -8,17 +8,17 @@
     $footer_info = $info->footer_info;
     $menu = [
         [
-            'name' => 'Trang chủ',
+            'name' => __('Trang chủ'),
             'children' => [],
             'link' => 'index',
         ],
         [
-            'name' => 'Danh Mục Sản Phẩm',
+            'name' => __('Danh mục sản phẩm'),
             'children' => categoryMegaMenu(),
             'link' => 'index',
         ],
         [
-            'name' => 'Cửa Hàng',
+            'name' => __('Cửa hàng'),
             'children' => [],
             'link' => 'shop',
         ],
@@ -29,7 +29,7 @@
         // 'link' => 'news',
         // ],
         [
-            'name' => 'Liên hệ',
+            'name' => __('Liên hệ'),
             'children' => [],
             'link' => 'contact',
         ],
@@ -102,8 +102,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
     {{-- Scroll-top-end --}}
     {{-- thông báo --}}
     <script src="
-                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
-                                            "></script>
+                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js
+                                                                        "></script>
     {{-- JS --}}
     <script src="{{ asset('client-frontend') }}/assets/js/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('client-frontend') }}/assets/js/popper.min.js"></script>

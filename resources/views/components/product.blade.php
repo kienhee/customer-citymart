@@ -34,7 +34,7 @@
 
             <div class="cart__action__btn ">
                 <div class="cart__btn">
-                    <button class="btn btn-outline w-100">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-outline w-100">{{__('Thêm vào giỏ hàng')}}</button>
                     <input type="hidden" class="product_id-hidden" value="{{ $id }}">
                     <input type="hidden" class="color-hidden" value="{{ $colors }}">
                     <input type="hidden" class="size-hidden"

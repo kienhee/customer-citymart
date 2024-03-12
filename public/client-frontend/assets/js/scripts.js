@@ -121,12 +121,12 @@
      * Language Dropdown
      ********************************/
     $(".language__select .selected").on("click", function (e) {
-        e.preventDefault();
+        // e.preventDefault();
         $(".language__select .list").toggleClass("active");
     });
 
     $(".language__select .list li").on("click", function (e) {
-        e.preventDefault();
+        // e.preventDefault();
         $(this).parent(".list").removeClass("active");
 
         var outPutText = $(this).text();

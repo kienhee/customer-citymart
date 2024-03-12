@@ -1,5 +1,5 @@
 @extends('client.layout.index')
-@section('title', 'Cửa hàng')
+@section('title', __('Cửa hàng'))
 
 @section('content')
     <!-- All Category Section Start -->
@@ -8,15 +8,15 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="section-title mb-30">
-                        <h2>Products</h2>
+                        <h2>{{ __('Sản phẩm') }}</h2>
                         <div class="shortBy-select select__style d-lg-none d-flex">
-                           <label for="sortBy">sắp xếp:</label>
+                            <label for="sortBy">{{ __('Sắp xếp') }}:</label>
                             <select name="sortBy" class="sortBy">
-                                <option value="all">Tất cả</option>
-                                <option value="price(ASC)">Giá tăng dần</option>
-                                <option value="price(DESC)">Giá giảm dần</option>
-                                <option value="Date">Ngày tạo</option>
-                                <option value="Sale">Giảm giá</option>
+                                <option value="all">{{ __('Tất cả') }}</option>
+                                <option value="price(ASC)">{{ __('Giá tăng dần') }}</option>
+                                <option value="price(DESC)">{{ __('Giá giảm dần') }}</option>
+                                <option value="Date">{{ __('Ngày tạo') }}</option>
+                                <option value="Sale">{{ __('Giảm giá') }}</option>
                             </select>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <form action="#" class="product-filter">
                                 <div class="custom__dropdown custom__dropdown__v2">
                                     <div class="selected">
-                                        <div class="selected_item selected_item-v2">Danh mục sản phẩm</div>
+                                        <div class="selected_item selected_item-v2">{{ __('Danh mục sản phẩm') }}</div>
                                     </div>
                                     <ul class="list list__v2">
                                         @foreach (categoriesChildren() as $category)
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="custom__dropdown custom__dropdown__v2">
                                     <div class="selected">
-                                        <div class="selected_item selected_item-v2">Khoảng giá</div>
+                                        <div class="selected_item selected_item-v2">{{ __('Khoảng giá') }}</div>
                                     </div>
                                     <ul class="list list__v2">
                                         <li onclick="addFillter('price','50-100')">
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="custom__dropdown custom__dropdown__v2">
                                     <div class="selected">
-                                        <div class="selected_item selected_item-v2">Màu sắc</div>
+                                        <div class="selected_item selected_item-v2">{{ __('Màu sắc') }}</div>
                                     </div>
                                     <ul class="list list__v2">
                                         @foreach (getAllColors() as $color)
@@ -89,13 +89,14 @@
                         </div>
 
                         <div class="shortBy-select select__style d-lg-flex d-none">
-                            <label for="sortBy">sắp xếp:</label>
+
+                            <label for="sortBy">{{ __('Sắp xếp') }}:</label>
                             <select name="sortBy" class="sortBy">
-                                <option value="all">Tất cả</option>
-                                <option value="price(ASC)">Giá tăng dần</option>
-                                <option value="price(DESC)">Giá giảm dần</option>
-                                <option value="Date">Ngày tạo</option>
-                                <option value="Sale">Giảm giá</option>
+                                <option value="all">{{ __('Tất cả') }}</option>
+                                <option value="price(ASC)">{{ __('Giá tăng dần') }}</option>
+                                <option value="price(DESC)">{{ __('Giá giảm dần') }}</option>
+                                <option value="Date">{{ __('Ngày tạo') }}</option>
+                                <option value="Sale">{{ __('Giảm giá') }}</option>
                             </select>
                         </div>
                     </div>
@@ -106,15 +107,15 @@
                     @if ($products->count() > 0)
                         <div class="product-card__wrapper justify-content-start items-1-5">
                             @foreach ($products as $item)
-                                <x-product id="{{ $item->id }}" images="{{ $item->images }}" name="{{ $item->name }}"
-                                    description="{{ $item->description }}" slug="{{ $item->slug }}"
-                                    price="{{ $item->price }}" discount="{{ $item->discount }}"
-                                    quantity="{{ $item->quantity }}" colors="{{ $item->colors }}"
-                                    sizes="{{ $item->sizes }}" />
+                                <x-product id="{{ $item->id }}" images="{{ $item->images }}"
+                                    name="{{ $item->name }}" description="{{ $item->description }}"
+                                    slug="{{ $item->slug }}" price="{{ $item->price }}"
+                                    discount="{{ $item->discount }}" quantity="{{ $item->quantity }}"
+                                    colors="{{ $item->colors }}" sizes="{{ $item->sizes }}" />
                             @endforeach
                         </div>
                     @else
-                        <p class="text-center text-muted h1 fw-bold">Không tìm thấy sản phẩm nào</p>
+                        <p class="text-center text-muted h1 fw-bold"> {{ __('Không tìm thấy sản phẩm nào') }}</p>
                     @endif
 
                 </div>

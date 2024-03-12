@@ -95,7 +95,7 @@ class ClientController extends Controller
         // Lấy dữ liệu sản phẩm từ session
         $product = Product::find($request->product_id);
         if (!$product) {
-            return response()->json(['title' => 'Sản phẩm không tồn tại!', 'message' => 'Vui lòng thử lại'], 404);
+            return response()->json(['title' => __('Sản phẩm không tồn tại!'), 'message' => __('Vui lòng thử lại')], 404);
         }
 
         // Lấy giỏ hàng từ session, nếu không tồn tại thì tạo mới
@@ -132,7 +132,7 @@ class ClientController extends Controller
         // Lưu giỏ hàng vào session
         session()->put('cart', $cart);
 
-        return response()->json(['title' => 'Đã thêm vào giỏ hàng!', 'message' => 'Tiếp tục mua sắm'], 200);
+        return response()->json(['title' => __('Đã thêm vào giỏ hàng!'), 'message' => __('Tiếp tục mua sắm')], 200);
     }
     public function handleActionsCart(Request $request)
     {
@@ -157,7 +157,7 @@ class ClientController extends Controller
         // Lưu giỏ hàng vào session
         session()->put('cart', $cart);
 
-        return response()->json(['title' => 'Đã thêm vào giỏ hàng!', 'message' => 'Tiếp tục mua sắm', 'data' => $cart], 200);
+        return response()->json(['title' => __('Đã thêm vào giỏ hàng!'), 'message' => __('Tiếp tục mua sắm'), 'data' => $cart], 200);
     }
     public function checkout()
     {

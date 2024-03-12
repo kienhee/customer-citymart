@@ -1,5 +1,5 @@
 @extends('client.layout.index')
-@section('title', 'Trang chủ')
+@section('title', __('Trang chủ'))
 @section('content')
 
     <!-- Banner Section Start -->
@@ -89,12 +89,12 @@
                     <div class="col-12">
                         <div class="section-title">
                             <div class="section-title__wrap">
-                                <h2>Sản Phẩm Khuyến Mãi</h2>
+                                <h2>{{ __('Sản phẩm khuyến mãi') }}</h2>
                                 {{-- <div class="sales__countdown countdown__wrapper">
                                 <div id="salesCountdown"></div>
                             </div> --}}
                             </div>
-                            <a href="{{ route('shop', ['filter' => 'Sale']) }}" class="solid-btn">all <i
+                            <a href="{{ route('shop', ['filter' => 'Sale']) }}" class="solid-btn">{{ __('Tất cả') }} <i
                                     class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
@@ -156,7 +156,8 @@
                     <div class="col-12">
                         <div class="section-title">
                             <h2>{{ $item['category_name'] }}</h2>
-                            <a href="{{ route('shop', ['category' => $item['category_name']]) }}" class="solid-btn">all
+                            <a href="{{ route('shop', ['category' => $item['category_name']]) }}"
+                                class="solid-btn">{{ __('Tất cả') }}
                                 <i class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
@@ -208,7 +209,7 @@
 
     <!-- Trending Section End -->
 
-    <!-- CAll To Action Start -->
+    {{-- <!-- CAll To Action Start -->
     <section class="call__to__action">
         <div class="container">
             <div class="row">
@@ -228,7 +229,7 @@
             </div>
         </div>
     </section>
-    <!-- CAll To Action End -->
+    <!-- CAll To Action End --> --}}
 
     <!-- Feature Section Start -->
     <section class="feature__section">

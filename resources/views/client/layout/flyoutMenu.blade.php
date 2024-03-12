@@ -20,8 +20,8 @@
              </div>
              <!-- Search Form -->
              <form action="{{ route('shop') }}" method="get" class="search__form full__width">
-                 <input type="search" class="form-control" name="search" placeholder="Tìm kiếm tên sản phẩm...."
-                     value="{{ request()->search }}" />
+                 <input type="search" class="form-control" name="search"
+                     placeholder="{{ __('Tìm kiếm tên sản phẩm') }}" value="{{ request()->search }}" />
                  <button type="submit">
                      <img src="{{ asset('client-frontend') }}/assets/images/search.png" alt="search" />
                  </button>

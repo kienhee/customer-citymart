@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SettingController extends Controller
 {
@@ -48,5 +49,14 @@ class SettingController extends Controller
             return back()->with('msgSuccess', 'Cập nhật thành công');
         }
         return back()->with('msgError', 'Cập nhật thất bại!');
+    }
+    public function changeLang($locale)
+    {
+
+        if (!in_array($locale, ['se', 'vi'])) {
+            abort(404);
+        }
+        Session::put('language', $locale);
+        return redirect()->back();
     }
 }

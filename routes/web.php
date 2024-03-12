@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/')->group(
+Route::prefix('/')->middleware('localization')->group(
     function () {
         Route::get('/', [ClientController::class, 'index'])->name('index');
         Route::get('shop', [ClientController::class, 'shop'])->name('shop');
@@ -40,6 +40,7 @@ Route::prefix('/')->group(
         Route::get('checkout/tracking', [ClientController::class, 'tracking'])->name('tracking');
         Route::get('news', [ClientController::class, 'news'])->name('news');
         Route::get('contact', [ClientController::class, 'contact'])->name('contact');
+        Route::get('/lang/{locale}', [SettingController::class, 'changeLang'])->name('changeLang');
     }
 );
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {

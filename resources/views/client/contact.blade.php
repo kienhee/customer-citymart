@@ -10,7 +10,7 @@
 
 @endphp
 @extends('client.layout.index')
-@section('title', 'Liên Hệ')
+@section('title', __('Liên hệ'))
 @section('content')
     <div class="container my-5">
         <section class="fullPage-section p-0">
@@ -21,12 +21,14 @@
                     <img src="{{ asset('client-frontend') }}/assets/images/bg-contact.png" alt="comming-soon" />
                     <div class="contact__overlay">
                         <div class="contact__info">
-                            <h2 class="section__title">Hãy nói về tất cả mọi thứ!</h2>
-                            <p class="content">Chúng tôi ở đây để trợ giúp và trả lời bất kỳ câu hỏi nào bạn có thể có. Viết
-                                thư
-                                cho chúng tôi hoặc
-                                gọi cho chúng tôi. Chúng tôi sẽ phản hồi nhanh nhất có thể. Nhưng vâng, có thể mất tới 24
-                                giờ.</p>
+                            <h2 class="section__title"> {{ __('Hãy nói về tất cả mọi thứ!') }}</h2>
+                            <p class="content">
+                                {{ __(' Chúng tôi ở đây để trợ giúp và trả lời bất kỳ câu hỏi nào bạn có thể có. Viết
+                                                                thư
+                                                                cho chúng tôi hoặc
+                                                                gọi cho chúng tôi. Chúng tôi sẽ phản hồi nhanh nhất có thể. Nhưng vâng, có thể mất tới 24
+                                                                giờ.') }}
+                            </p>
                             <div class="contact__meta">
                                 <ul class="contact__meta__list">
                                     @if ($email)
@@ -91,7 +93,8 @@
                                         </a>
                                     @endif
                                     @if ($instagram)
-                                        <a href="{{ $instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i>
+                                        <a href="{{ $instagram }}" target="_blank"><i
+                                                class="fa-brands fa-instagram"></i>
                                         </a>
                                     @endif
                                 </div>

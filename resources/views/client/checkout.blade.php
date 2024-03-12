@@ -4,7 +4,7 @@
        $total = calculateTotal($cart);
    @endphp
    @extends('client.layout.index')
-   @section('title', 'Thanh toán')
+   @section('title', __('Thanh toán'))
    @section('content')
        <section class="checkout__section">
            <div class="container">
@@ -12,10 +12,10 @@
                    @csrf
                    <div class="col-lg-6">
                        <div class="checkout__form" id="shipping_details">
-                           <h5 class="sub-title">Thông tin đặt hàng</h5>
+                           <h5 class="sub-title">{{ __('Thông tin đặt hàng') }}</h5>
                            <div class="form__wrapper">
                                <div class="form-group">
-                                   <label for="order_id">Mã đơn hàng: <span class="text-danger">*</span></label>
+                                   <label for="order_id">{{ __('Mã đơn hàng') }}: <span class="text-danger">*</span></label>
                                    <input type="text" name="order_id" id="order_id"
                                        value="{{ old('order_id') ?? $orderID }}" readonly class="form-control fw-bold" />
                                    @error('order_id')
@@ -23,45 +23,49 @@
                                    @enderror
                                </div>
                                <div class="form-group">
-                                   <label for="name">Họ và tên: <span class="text-danger">*</span></label>
+                                   <label for="name"> {{ __('Họ và tên') }}: <span class="text-danger">*</span></label>
                                    <input type="text" name="name" id="name" value="{{ old('name') }}"
-                                       class="form-control" placeholder="Nhập họ tên đầy đủ" />
+                                       class="form-control" placeholder="{{ __('Nhập họ và tên đầy đủ') }}" />
                                    @error('name')
                                        <p class="text-danger my-2">{{ $message }}</p>
                                    @enderror
                                </div>
                                <div class="form-group">
-                                   <label for="email">Email: <span class="text-danger">*</span></label>
+                                   <label for="email"> {{ __('Email') }}: <span class="text-danger">*</span></label>
                                    <input type="text" name="email" id="email" value="{{ old('email') }}"
-                                       class="form-control" placeholder="Nhập email" />
+                                       class="form-control" placeholder="{{ __('Nhập email') }}" />
                                    @error('email')
                                        <p class="text-danger my-2">{{ $message }}</p>
                                    @enderror
                                </div>
                                <div class="form-group">
-                                   <label for="phone">Số điện thoại: <span class="text-danger">*</span></label>
+                                   <label for="phone"> {{ __('Số điện thoại') }}: <span
+                                           class="text-danger">*</span></label>
                                    <input type="text" name="phone" id="phone"
-                                       value="{{ old('phone') }}"class="form-control" placeholder="Nhập số điện thoại" />
+                                       value="{{ old('phone') }}"class="form-control"
+                                       placeholder=" {{ __('Nhập số điện thoại') }}" />
                                    @error('phone')
                                        <p class="text-danger my-2">{{ $message }}</p>
                                    @enderror
                                </div>
                                <div class="form-group">
-                                   <label for="address">Địa chỉ giao hàng: <span class="text-danger">*</span></label>
+                                   <label for="address"> {{ __('Địa chỉ giao hàng') }}: <span
+                                           class="text-danger">*</span></label>
                                    <input type="text" name="address" id="address" value="{{ old('address') }}"
-                                       class="form-control" placeholder="Nhập số nhà, tên đường" />
+                                       class="form-control" placeholder=" {{ __('Nhập số nhà, tên đường') }}" />
                                    @error('address')
                                        <p class="text-danger my-2">{{ $message }}</p>
                                    @enderror
                                </div>
                                <div class="form-group">
-                                   <label for="notes">Ghi chú:</label>
-                                   <textarea name="notes" id="notes" rows="5" class="form-control" placeholder="Nội dung ghi chú">{{ old('notes') }}</textarea>
+                                   <label for="notes"> {{ __('Ghi chú') }}:</label>
+                                   <textarea name="notes" id="notes" rows="5" class="form-control"
+                                       placeholder=" {{ __('Nội dung ghi chú') }}">{{ old('notes') }}</textarea>
                                    @error('notes')
                                        <p class="text-danger my-2">{{ $message }}</p>
                                    @enderror
                                </div>
-                               <h5 class="sub-title">Phương thức thanh toán</h5>
+                               <h5 class="sub-title"> {{ __('Phương thức thanh toán') }}</h5>
                                @error('delivery_type')
                                    <p class="text-danger mb-5">{{ $message }}</p>
                                @enderror
@@ -76,8 +80,8 @@
                                                alt="cash" />
                                        </span>
                                        <span class="content">
-                                           <span class="title">Tiền mặt (COD)</span>
-                                           <span class="desc">Giao hàng hôm nay</span>
+                                           <span class="title"> {{ __('Tiền mặt') }} (COD)</span>
+                                           <span class="desc">{{ __('Giao hàng hôm nay') }}</span>
                                        </span>
                                        <span class="price"> Free </span>
                                        <span class="status"></span>
@@ -114,7 +118,7 @@
                    <div class="col-lg-1"></div>
                    <div class="col-lg-5">
                        <div class="cart-order cart-order__v2 ">
-                           <h4 class="cart-order__title">Chi tiết đơn hàng của bạn</h4>
+                           <h4 class="cart-order__title"> {{ __('Chi tiết đơn hàng của bạn') }}</h4>
                            <div class="cart__items">
                                @foreach ($cart as $item)
                                    <div class="shopping-card shopping-card__v2">
@@ -165,10 +169,10 @@
 
                         </ul> --}}
                            <div class="cart__total cart__total__v2 mb-5">
-                               <h3>Total <span>(Incl. VAT)</span></h3>
+                               <h3>{{ __('Tổng tiền') }}</h3>
                                <div class="total">{{ $total }} Kr</div>
                            </div>
-                           <button class="btn btn-lg btn-primary w-100 py-3">Xác nhận đặt hàng</button>
+                           <button class="btn btn-lg btn-primary w-100 py-3"> {{ __('Xác nhận đặt hàng') }}</button>
                        </div>
 
                    </div>
@@ -189,11 +193,7 @@
 
                         </div> `,
                    icon: "warning",
-                   html: `
-    Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi.
-     Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán.
-      Đơn hàng sẽ được giao sau khi tiền đã chuyển.
-  `,
+                   html: "Genomför betalningen till vårt bankkonto direkt. Vänligen använd din beställningskod i betalningsmeddelandet. Din order kommer att levereras efter att betalningen har mottagits.",
                    showCloseButton: true,
                    showCancelButton: false,
                    focusConfirm: false,

@@ -21,7 +21,7 @@
                 <div class="search__form__wrapper">
                     <form action="{{ route('shop') }}" method="get" class="search__form ">
                         <input type="search" class="form-control " name="search"
-                            placeholder="Tìm kiếm tên sản phẩm...." value="{{ request()->search }}" />
+                            placeholder="{{ __('Tìm kiếm tên sản phẩm') }}" value="{{ request()->search }}" />
                         <button type="submit">
                             <img src="{{ asset('client-frontend') }}/assets/images/search.png" alt="search" />
                         </button>
@@ -37,19 +37,36 @@
                 <div class="language__select custom__dropdown">
                     <div class="selected">
                         <div class="selected_item">
-                            <img src="{{ asset('client-frontend') }}/assets/images/flag/vietnam.png" alt="flag" />
-                            <span>Việt Nam </span>
+                            @if (App::currentLocale() == 'vi')
+                                <img src="{{ asset('client-frontend') }}/assets/images/flag/vietnam.png"
+                                    alt="flag" />
+                                <span>Việt Nam </span>
+                            @endif
+                            @if (App::currentLocale() == 'se')
+                                <img src="{{ asset('client-frontend') }}/assets/images/flag/sweden.png"
+                                    alt="flag" />
+                                <span>Sweden</span>
+                            @endif
                         </div>
                     </div>
                     <ul class="list">
                         <li>
-                            <img src="{{ asset('client-frontend') }}/assets/images/flag/vietnam.png" alt="flag" />
-                            Việt Nam
+                            <a href="{{ route('changeLang', 'vi') }}" class="w-100 text-muted d-flex gap-1">
+                                <img src="{{ asset('client-frontend') }}/assets/images/flag/vietnam.png"
+                                    alt="flag" />
+                                <span>Viet Nam</span>
+                            </a>
+
                         </li>
                         <li>
-                            <img src="{{ asset('client-frontend') }}/assets/images/flag/sweden.png" alt="flag" />
-                            Thuỵ điển
+                            <a href="{{ route('changeLang', 'se') }}" class="w-100 text-muted d-flex gap-1">
+                                <img src="{{ asset('client-frontend') }}/assets/images/flag/sweden.png"
+                                    alt="flag" />
+                                <span>Sweden</span>
+                            </a>
+
                         </li>
+
                     </ul>
                 </div>
                 <ul class="meta__item">
@@ -59,7 +76,8 @@
                     <div class="header__cart">
                         <a href="#" class="cart__btn">
                             <div class="cart__btn-img">
-                                <img src="{{ asset('client-frontend') }}/assets/images/cart-icon.png" alt="cart-icon" />
+                                <img src="{{ asset('client-frontend') }}/assets/images/cart-icon.png"
+                                    alt="cart-icon" />
                                 <span class="value" id="lengthCart">0</span>
                             </div>
                             <span class="title">cart</span>
@@ -71,7 +89,7 @@
         </div>
         <!-- Search Form -->
         <form action="{{ route('shop') }}" method="get" class="search__form full__width d-lg-none d-flex">
-            <input type="search" class="form-control" name="search" placeholder="Tìm kiếm tên sản phẩm...."
+            <input type="search" class="form-control" name="search" placeholder="{{ __('Tìm kiếm tên sản phẩm') }}"
                 value="{{ request()->search }}" />
             <button type="submit">
                 <img src="{{ asset('client-frontend') }}/assets/images/search.png" alt="search" />

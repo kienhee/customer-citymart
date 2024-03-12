@@ -2,7 +2,7 @@
       <div class="flyout__flip">
           <div class="flyout__inner">
               <div class="cart__header-top">
-                  <div class="main__title">Giỏ hàng</div>
+                  <div class="main__title">{{__('Giỏ hàng')}}</div>
                   <div class="close__btn action__btn">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                           xmlns="http://www.w3.org/2000/svg">
@@ -15,8 +15,8 @@
                   </div>
               </div>
               <div class="cart__title">
-                  <h3>Product</h3>
-                  <h3>Price</h3>
+                  <h3>{{__('Sản phẩm')}}</h3>
+                  <h3>{{__('Giá')}}</h3>
               </div>
               <div class="cart__items" id="cart__items">
               </div>
@@ -36,15 +36,15 @@
               <!-- Total Start -->
               <hr>
               <div class="cart__total">
-                  <h3>Total <span>(Incl. VAT)</span></h3>
+                  <h3>{{__('Tổng tiền')}}</h3>
                   <div class="total" id="cart__subtotal">0 Kr</div>
               </div>
               <!-- Total End -->
           </div>
           <!-- Cart Button Start -->
           <div class="cart__btns ">
-              <a href="{{ route('checkout') }}" class="btn btn-primary">Thanh toán</a>
-              <a href="#" class="btn btn-outline">Tiếp tục mua sắm</a>
+              <a href="{{ route('checkout') }}" class="btn btn-primary">{{__('Thanh toán')}}</a>
+              <a href="#" class="btn btn-outline">{{__('Tiếp tục mua sắm')}}</a>
           </div>
           <!-- Cart Button End -->
       </div>

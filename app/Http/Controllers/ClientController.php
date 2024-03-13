@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Ramsey\Uuid\Uuid;
 
@@ -14,6 +16,7 @@ class ClientController extends Controller
 {
     public function index()
     {
+        $sliders = Slider::where('id', 1)->first();
         $categories = Category::where('category_id', "<>", 0)->get();
         $productsByCategory = [];
         $productSale = Product::where('discount', '>', 0)->orderBy('created_at', 'desc')->limit(10)->get();
@@ -23,18 +26,24 @@ class ClientController extends Controller
             if (!empty($products)) {
                 $productsByCategory[] = [
                     'category_name' => $category->name,
+                    'category_name_se' => $category->name_se,
                     'products' => $products
                 ];
             }
         }
-        return view('client.index', compact('productsByCategory', 'productSale'));
+        return view('client.index', compact('sliders', 'productsByCategory', 'productSale'));
     }
     public function shop(Request $request)
     {
         $result = Product::query();
 
         if ($request->has('category') && $request->category != null) {
-            $category = Category::where('name', $request->category)->first();
+            if (App::currentLocale() == 'vi') {
+                # code...
+                $category = Category::where('name', $request->category)->first();
+            } else {
+                $category = Category::where('name_se', $request->category)->first();
+            }
             if (!$category) {
                 abort(404);
             }

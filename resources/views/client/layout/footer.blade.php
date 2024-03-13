@@ -39,7 +39,7 @@
                           <ul>
                               @foreach (categoriesChildren() as $category)
                                   <li><a
-                                          href="{{ route('shop', ['category' => $category->name]) }}">{{ $category->name }}</a>
+                                          href="{{ route('shop', ['category' => App::currentLocale() == 'vi' ? $category->name : $category->name_se]) }}">{{ App::currentLocale() == 'vi' ? $category->name : $category->name_se }}</a>
                                   </li>
                               @endforeach
 
@@ -92,7 +92,7 @@
                                           <ul>
                                               @foreach (categoriesChildren() as $category)
                                                   <li><a
-                                                          href="{{ route('shop', ['category' => $category->name]) }}">{{ $category->name }}</a>
+                                                          href="{{ route('shop', ['category' => App::currentLocale() == 'vi' ? $category->name : $category->name_se]) }}">{{ App::currentLocale() == 'vi' ? $category->name : $category->name_se }}</a>
                                                   </li>
                                               @endforeach
                                           </ul>

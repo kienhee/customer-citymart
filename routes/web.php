@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ClientController;
 use App\Models\Group;
@@ -45,6 +46,10 @@ Route::prefix('/')->middleware('localization')->group(
 );
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::prefix('sliders')->name('sliders.')->group(function () {
+        Route::get('/', [SliderController::class, 'index'])->name('index');
+        Route::put('/edit/{id}', [SliderController::class, 'update'])->name('update');
+    });
     Route::prefix('categories')->name('categories.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/add', [categoryController::class, 'add'])->name('add');

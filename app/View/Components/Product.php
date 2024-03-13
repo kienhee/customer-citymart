@@ -14,9 +14,11 @@ class Product extends Component
     public $id;
     public $images;
     public $name;
+    public $name_se;
     public $description;
     public $price;
     public $slug;
+    public $slug_se;
     public $discount;
     public $quantity;
     public $colors;

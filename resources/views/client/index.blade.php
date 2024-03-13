@@ -3,83 +3,64 @@
 @section('content')
 
     <!-- Banner Section Start -->
-    <section class="banner__slider__section">
-        <div class="container">
-            <div class="row align-items-center column-reverse">
-                <div class="col-lg-6 col-md-6">
-                    <div class="banner__content">
-                        <h4>One-stop for head to toe look</h4>
-                        <h1>Shop what you wanted</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat amet penatibus arcu
-                            diam eget massa rhoncus nulla. Imperdiet mattis risus
-                            amet velit in eget neque, non.
-                        </p>
-                        <div class="hero-btn">
-                            <a href="#" class="btn btn-primary">Add To Cart</a>
+    @if ($sliders)
+        <section class="banner__slider__section">
+            <div class="container">
+                <div class="row align-items-center column-reverse">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="banner__content">
+                            <h4>One-stop for head to toe look</h4>
+                            <h1>Shop what you wanted</h1>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat amet penatibus arcu
+                                diam eget massa rhoncus nulla. Imperdiet mattis risus
+                                amet velit in eget neque, non.
+                            </p>
+                            <div class="hero-btn">
+                                <a href="{{ route('shop') }}" class="btn btn-primary">Shop now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="hero__swiper__slider">
-                        <div class="swiper hero__mySwiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="slider__image">
-                                        <img src="{{ asset('client-frontend') }}/assets/images/banner/banner-slider-01.png"
-                                            alt="banner-bg" />
-                                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="hero__swiper__slider">
+                            <div class="swiper hero__mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach (explode(',', $sliders->images) as $key => $image)
+                                        <div class="swiper-slide">
+                                            <div class="slider__image">
+                                                <img src="{{ $image }}" alt="banner-bg" />
+                                            </div>
+                                        </div>
+                                    @endforeach
+
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="slider__image">
-                                        <img src="{{ asset('client-frontend') }}/assets/images/banner/banner-slider-02.png"
-                                            alt="banner-bg" />
-                                    </div>
+                                <div class="swiper-button-next">
+                                    <svg width="35" height="16" viewBox="0 0 35 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 8L34 8" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M27 1L34 8L27 15" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="slider__image">
-                                        <img src="{{ asset('client-frontend') }}/assets/images/banner/banner-slider-01.png"
-                                            alt="banner-bg" />
-                                    </div>
+                                <div class="swiper-button-prev">
+                                    <svg width="23" height="16" viewBox="0 0 23 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 8H1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M8 15L1 8L8 1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="slider__image">
-                                        <img src="{{ asset('client-frontend') }}/assets/images/banner/banner-slider-02.png"
-                                            alt="banner-bg" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="slider__image">
-                                        <img src="{{ asset('client-frontend') }}/assets/images/banner/banner-slider-01.png"
-                                            alt="banner-bg" />
-                                    </div>
-                                </div>
+                                <div class="swiper-pagination"></div>
                             </div>
-                            <div class="swiper-button-next">
-                                <svg width="35" height="16" viewBox="0 0 35 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 8L34 8" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M27 1L34 8L27 15" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <div class="swiper-button-prev">
-                                <svg width="23" height="16" viewBox="0 0 23 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 8H1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M8 15L1 8L8 1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <div class="swiper-pagination"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
     <!-- Banner Slider Section End -->
     <!-- Sale Section Start -->
     @if ($productSale->count() > 0)
@@ -144,9 +125,80 @@
             </div>
         </section>
     @endif
-
     <!-- Sale Section End -->
 
+    <!-- Category Section Start -->
+    <section class="category__section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>{{ __('Danh mục sản phẩm') }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="category__wrapper swiper__pagination">
+                        <div class="swiper categorySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a href="{{ route('shop') }}" class="category-card">
+                                        <div class="category-card__image">
+                                            <img src="{{ asset('client-frontend') }}/assets/images/category/all.png"
+                                                alt="icon" />
+                                        </div>
+                                        <div class="category-card__title">
+                                            <h5>All</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                                @foreach (categoriesChildren() as $category)
+                                    <div class="swiper-slide">
+                                        <a href="{{ route('shop', ['category' => App::currentLocale() == 'vi' ? $category->name : $category->name_se]) }}"
+                                            class="category-card">
+                                            <div class="category-card__image">
+                                                <img src="{{ $category->cover ?? asset('client-frontend/assets/images/category/c-icon-01.png') }}"
+                                                    alt="icon" />
+                                            </div>
+                                            <div class="category-card__title">
+                                                <h5>{{ App::currentLocale() == 'vi' ? $category->name : $category->name_se }}
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="swiper-button-next">
+                                    <svg width="35" height="16" viewBox="0 0 35 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 8L34 8" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M27 1L34 8L27 15" stroke="#D0D5DD" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev">
+                                <svg width="23" height="16" viewBox="0 0 23 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 8H1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M8 15L1 8L8 1" stroke="#D0D5DD" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Category Section End -->
 
     <!-- Trending Section Start -->
     @foreach ($productsByCategory as $item)
@@ -155,8 +207,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h2>{{ $item['category_name'] }}</h2>
-                            <a href="{{ route('shop', ['category' => $item['category_name']]) }}"
+                            <h2>{{ App::currentLocale() == 'vi' ? $item['category_name'] : $item['category_name_se'] }}
+                            </h2>
+                            <a href="{{ route('shop', ['category' => App::currentLocale() == 'vi' ? $item['category_name'] : $item['category_name_se']]) }}"
                                 class="solid-btn">{{ __('Tất cả') }}
                                 <i class="fa-solid fa-angle-right"></i></a>
                         </div>
@@ -240,7 +293,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#ECFDF3">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-01.png"
+                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-01.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">
@@ -252,7 +305,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#FFFAEB">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-02.png"
+                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-02.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">
@@ -264,7 +317,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#F9F5FF">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-03.png"
+                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-03.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">
@@ -276,7 +329,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#FEF3F2">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-04.png"
+                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-04.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">

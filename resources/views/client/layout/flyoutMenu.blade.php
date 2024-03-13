@@ -41,11 +41,12 @@
                                  <ul class="sub__menu">
                                      @foreach ($item['children'] as $parent)
                                          <li class="has__dropdown">
-                                             <a href="#" class="title nav__link">{{ $parent['parent'] }}</a>
+                                             <a href="javascript:void(0)"
+                                                 class="title nav__link">{{ App::currentLocale() == 'vi' ? $parent['parent'] : $parent['parent_se'] }}</a>
                                              <ul class="sub__sub-menu">
                                                  @foreach ($parent['children'] as $children)
                                                      <li><a
-                                                             href="{{ route('shop', ['category' => $children['name']]) }}">{{ $children['name'] }}</a>
+                                                             href="{{ route('shop', ['category' => App::currentLocale() == 'vi' ? $children['name'] : $children['name_se']]) }}">{{ App::currentLocale() == 'vi' ? $children['name'] : $children['name_se'] }}</a>
                                                      </li>
                                                  @endforeach
                                              </ul>

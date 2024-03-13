@@ -16,7 +16,10 @@
     </div>
     <div class="product__content">
         <div class="product__title">
-            <h5><a href="{{ route('productDetail', $slug) }}">{{ $name }} </a></h5>
+            {{-- <h5><a href="{{ route('productDetail', App::currentLocale() == 'vi' ? $slug : $slug_se) }}">{{ App::currentLocale() == 'vi' ? $name : $name_se }}
+                </a></h5> --}}
+            <h5><a href="{{ route('productDetail', $slug) }}">{{ $name }}
+                </a></h5>
         </div>
         <div class="product__bottom d-block">
             <div class="product__price justify-content-start mb-3">
@@ -34,7 +37,7 @@
 
             <div class="cart__action__btn ">
                 <div class="cart__btn">
-                    <button class="btn btn-outline w-100">{{__('Thêm vào giỏ hàng')}}</button>
+                    <button class="btn btn-outline w-100">{{ __('Thêm vào giỏ hàng') }}</button>
                     <input type="hidden" class="product_id-hidden" value="{{ $id }}">
                     <input type="hidden" class="color-hidden" value="{{ $colors }}">
                     <input type="hidden" class="size-hidden"

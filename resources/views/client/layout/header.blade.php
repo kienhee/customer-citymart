@@ -112,17 +112,16 @@
                                 <li class="has__dropdown position-static">
                                     <a href="javascript:void(0)">{{ $item['name'] }}</a>
                                     <!-- Mega Menu -->
-
                                     <div class="mega__menu sub__menu">
                                         <ul class="mega__menu-item">
                                             @foreach ($item['children'] as $parent)
                                                 <li class="sub-mega__menu">
-                                                    <a class="menu__title"
-                                                        href="javascript:void(0)">{{ $parent['parent'] }}</a>
+                                                    <a class="menu__title" {{-- App::currentLocale() == "vi" --}}
+                                                        href="javascript:void(0)">{{ App::currentLocale() == 'vi' ? $parent['parent'] : $parent['parent_se'] }}</a>
                                                     <ul>
                                                         @foreach ($parent['children'] as $children)
                                                             <li><a
-                                                                    href="{{ route('shop', ['category' => $children['name']]) }}">{{ $children['name'] }}</a>
+                                                                    href="{{ route('shop', ['category' => App::currentLocale() == 'vi' ? $children['name'] : $children['name_se']]) }}">{{ App::currentLocale() == 'vi' ? $children['name'] : $children['name_se'] }}</a>
                                                             </li>
                                                         @endforeach
 
@@ -137,9 +136,6 @@
                                 </li>
                             @endif
                         @endforeach
-
-
-
 
                     </ul>
                 </div>

@@ -16,6 +16,13 @@
             'children' => [],
         ],
         [
+            'name' => 'Slider',
+            'classIcon' => 'bx bx-slider-alt',
+            'route' => 'dashboard.sliders.index',
+            'can' => '',
+            'children' => [],
+        ],
+        [
             'name' => 'Danh mục',
             'classIcon' => 'bx bx-spreadsheet',
             'route' => 'dashboard.categories.index',

@@ -19,7 +19,9 @@ class Category extends Model
             if ($category->category_id == 0) {
                 $result[] = [
                     "parent" => $category->name,
+                    "parent_se" => $category->name_se,
                     'slug' => $category->slug,
+                    'slug_se' => $category->slug_se,
                     "children" => self::getChildren($categories, $category->id)
                 ];
             }
@@ -36,7 +38,9 @@ class Category extends Model
             if ($category->category_id == $parentId) {
                 $children[] = [
                     "name" => $category->name,
+                    "name_se" => $category->name_se,
                     "slug" => $category->slug,
+                    "slug_se" => $category->slug_se,
                     "children" => self::getChildren($categories, $category->id)
                 ];
             }

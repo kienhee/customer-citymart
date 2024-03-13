@@ -104,11 +104,6 @@ class OrderController extends Controller
             <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded me-2"></i></button>
             <div class="dropdown-menu dropdown-menu-end m-0">
                 <a href="' . route('dashboard.orders.orderDetail', $order->id) . '" class="dropdown-item">Xem thêm</a>
-                  <form action="' . (route('dashboard.orders.changeStatus', $order->id)) . '" class="dropdown-item" method="POST">
-                        ' . csrf_field() . '
-                        <input type="hidden" name="status" value="0">
-                        <button type="submit" class="btn p-0 w-100 justify-content-start" >Chờ xác nhận </button>
-                    </form>
                 <form action="' . (route('dashboard.orders.changeStatus', $order->id)) . '" class="dropdown-item" method="POST">
                         ' . csrf_field() . '
                         <input type="hidden" name="status" value="1">

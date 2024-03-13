@@ -128,11 +128,11 @@
 
                         <div class="product-detail__action ">
                             <div class="item">
-                                <button class="btn btn-primary btn-outline"
-                                    id="addTocart">{{ __('Thêm vào giỏ hàng') }}</button>
+                                <button
+                                    class="btn btn-primary btn-outline addTocart">{{ __('Thêm vào giỏ hàng') }}</button>
                             </div>
                             <div class="item">
-                                <button class="btn btn-primary btn-filled">{{ __('Mua ngay') }}</button>
+                                <a href="{{route('checkout')}}" class="btn btn-primary btn-filled addTocart">{{ __('Mua ngay') }}</a>
                             </div>
                         </div>
                         {{-- <div class="product-detail__accordion accordion" id="productDetailAccordion">

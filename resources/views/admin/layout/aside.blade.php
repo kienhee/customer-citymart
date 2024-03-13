@@ -13,6 +13,7 @@
             'classIcon' => ' bx bx-home-circle',
             'route' => 'dashboard.index',
             'can' => 'dashboard',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -20,6 +21,7 @@
             'classIcon' => 'bx bx-slider-alt',
             'route' => 'dashboard.sliders.index',
             'can' => '',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -27,6 +29,7 @@
             'classIcon' => 'bx bx-spreadsheet',
             'route' => 'dashboard.categories.index',
             'can' => '',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -34,6 +37,7 @@
             'classIcon' => 'bx bx-package',
             'route' => 'dashboard.products.index',
             'can' => '',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -41,6 +45,7 @@
             'classIcon' => 'bx bxs-cart-alt',
             'route' => 'dashboard.orders.index',
             'can' => '',
+            'badge' => countNewOrder(),
             'children' => [],
         ],
         [
@@ -48,6 +53,7 @@
             'classIcon' => 'bx bx-palette',
             'route' => 'dashboard.colors.index',
             'can' => '',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -55,6 +61,7 @@
             'classIcon' => 'bx bx-calculator',
             'route' => 'dashboard.sizes.index',
             'can' => '',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -62,6 +69,7 @@
             'classIcon' => ' bx bx-user',
             'route' => 'dashboard.users.index',
             'can' => 'users',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -69,6 +77,7 @@
             'classIcon' => 'bx bx-check-shield',
             'route' => 'dashboard.permission.index',
             'can' => 'permission',
+            'badge' => 0,
             'children' => [],
         ],
         [
@@ -76,6 +85,7 @@
             'classIcon' => ' bx bx-library',
             'route' => 'dashboard.library',
             'can' => 'library',
+            'badge' => 0,
             'children' => [],
         ],
 
@@ -84,6 +94,7 @@
             'classIcon' => 'bx bx-cog',
             'route' => 'dashboard.settings.index',
             'can' => 'settings',
+            'badge' => 0,
             'children' => [],
         ],
     ];
@@ -156,6 +167,9 @@
                                 class="menu-link">
                                 <i class=" menu-icon tf-icons {{ $item['classIcon'] }}"></i>
                                 <div data-i18n="{{ $item['name'] }}">{{ $item['name'] }}</div>
+                                @if ($item['badge'])
+                                    <div class="badge bg-primary rounded-pill ms-auto">{{ $item['badge'] }}</div>
+                                @endif
                             </a>
                         </li>
                     @endcan
@@ -165,6 +179,9 @@
                             class="menu-link">
                             <i class=" menu-icon tf-icons {{ $item['classIcon'] }}"></i>
                             <div data-i18n="{{ $item['name'] }}">{{ $item['name'] }}</div>
+                            @if ($item['badge'])
+                                <div class="badge bg-primary rounded-pill ms-auto">{{ $item['badge'] }}</div>
+                            @endif
                         </a>
                     </li>
                 @endif

@@ -1,4 +1,4 @@
-$("#addTocart").on("click", function () {
+$(".addTocart").on("click", function () {
     let product_id = $('input[name="product_id"]').val();
     let color = $('input[name="color"]:checked').val();
     let size = $('input[name="size"]:checked').val();

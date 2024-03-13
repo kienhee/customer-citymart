@@ -49,6 +49,10 @@ function menuTreeCategory($menu, $parentId = 0)
     }
   }
 }
+function countNewOrder()
+{
+  return Order::where('status', 0)->count();
+}
 function getAllCategories()
 {
   return Category::orderBy('created_at', 'desc')->get();

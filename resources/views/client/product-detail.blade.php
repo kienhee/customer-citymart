@@ -2,7 +2,9 @@
 @section('title', $product->name)
 
 @section('content')
-
+    @php
+        $images = explode(',', $product->images);
+    @endphp
     <!-- product detail section start  -->
     <section class="product-main">
         <div class="container">
@@ -10,24 +12,27 @@
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <div class="col-md-6">
                     <div class="product-gallery">
-                        <div class="product-gallery__thumb swiper productGallerySwiperThumb">
+                        @if (count($images) > 1)
+                            <div class="product-gallery__thumb swiper productGallerySwiperThumb">
+                                <div class="swiper-wrapper">
+                                    @foreach ($images as $key => $image)
+                                        <div class="swiper-slide">
+                                            <div class="gallery-item">
+                                                <img src="{{ getThumb($image) }}" alt="product iamge" />
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="product-gallery__main swiper productGallerySwiper">
                             <div class="swiper-wrapper">
-                                @foreach (explode(',', $product->images) as $key => $image)
+                                @foreach ($images as $key => $image)
                                     <div class="swiper-slide">
                                         <div class="gallery-item">
                                             <img src="{{ $image }}" alt="product iamge" />
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                            </div>
-                        </div>
-                        <div class="product-gallery__main swiper productGallerySwiper">
-                            <div class="swiper-wrapper">
-                                @foreach (explode(',', $product->images) as $key => $image)
-                                    <div class="swiper-slide">
-                                        <div class="gallery-item">
-                                            <img src="{{ getThumb($image) }}" alt="product iamge" />
                                         </div>
                                     </div>
                                 @endforeach
@@ -39,7 +44,7 @@
                 <div class="col-md-6">
                     <div class="product-detail__wrapper">
                         <h2 class="product-detail__title">
-                            {{ $product->name }}
+                            {{ App::currentLocale() == 'vi' ? $product->name : $product->name_se }}
                         </h2>
                         <div class="product-detail__meta">
                             <ul class="right-meta">
@@ -67,7 +72,7 @@
                         @endif
                         @if ($product->description)
                             <p class="product-detail__short_desc">
-                                {{ $product->description }}
+                                {{ App::currentLocale() == 'vi' ? $product->description : $product->description_se }}
                             </p>
                         @endif
                         @if ($product->colors)
@@ -195,7 +200,11 @@
                         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                             tabindex="0">
                             <div class="content__body">
-                                {!! $product->content !!}
+                                @if (App::currentLocale() == 'vi')
+                                    {!! $product->content !!}
+                                @else
+                                    {!! $product->content_se !!}
+                                @endif
                             </div>
                         </div>
 
@@ -224,8 +233,9 @@
                                 @foreach ($ReletedProducts as $item)
                                     <div class="swiper-slide">
                                         <x-product id="{{ $item->id }}" images="{{ $item->images }}"
-                                            name="{{ $item->name }}" description="{{ $item->description }}"
-                                            slug="{{ $item->slug }}" price="{{ $item->price }}"
+                                            name="{{ $item->name }}" nameSe="{{ $item->name_se }}"
+                                            description="{{ $item->description }}" slug="{{ $item->slug }}"
+                                            slugSe="{{ $item->slug_se }}" price="{{ $item->price }}"
                                             discount="{{ $item->discount }}" quantity="{{ $item->quantity }}"
                                             colors="{{ $item->colors }}" sizes="{{ $item->sizes }}" />
                                     </div>

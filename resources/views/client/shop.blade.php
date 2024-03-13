@@ -108,8 +108,9 @@
                         <div class="product-card__wrapper justify-content-start items-1-5">
                             @foreach ($products as $item)
                                 <x-product id="{{ $item->id }}" images="{{ $item->images }}"
-                                    name="{{ $item->name }}" description="{{ $item->description }}"
-                                    slug="{{ $item->slug }}" price="{{ $item->price }}"
+                                    name="{{ $item->name }}" nameSe="{{ $item->name_se }}"
+                                    description="{{ $item->description }}" slug="{{ $item->slug }}"
+                                    slugSe="{{ $item->slug_se }}" price="{{ $item->price }}"
                                     discount="{{ $item->discount }}" quantity="{{ $item->quantity }}"
                                     colors="{{ $item->colors }}" sizes="{{ $item->sizes }}" />
                             @endforeach

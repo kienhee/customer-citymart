@@ -85,7 +85,13 @@ class ClientController extends Controller
     }
     public function productDetail($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        if (App::currentLocale() == 'vi') {
+            # code...
+            $product = Product::where('slug', $slug)->first();
+        } else {
+            $product = Product::where('slug_se', $slug)->first();
+        }
+    
         if (!$product) {
             abort(404);
         }
@@ -130,7 +136,9 @@ class ClientController extends Controller
                 'uuid' => $uuid->toString(),
                 'images' => $product->images,
                 'name' => $product->name,
+                'name_se' => $product->name_se,
                 'slug' => $product->slug,
+                'slug_se' => $product->slug_se,
                 'price' => $product->price,
                 'discount' => $product->discount,
                 'size' => $request->size,

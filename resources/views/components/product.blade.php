@@ -16,10 +16,9 @@
     </div>
     <div class="product__content">
         <div class="product__title">
-            {{-- <h5><a href="{{ route('productDetail', App::currentLocale() == 'vi' ? $slug : $slug_se) }}">{{ App::currentLocale() == 'vi' ? $name : $name_se }}
-                </a></h5> --}}
-            <h5><a href="{{ route('productDetail', $slug) }}">{{ $name }}
+            <h5><a href="{{ route('productDetail', App::currentLocale() == 'vi' ? $slug : $slugSe) }}">{{ App::currentLocale() == 'vi' ? $name : $nameSe }}
                 </a></h5>
+
         </div>
         <div class="product__bottom d-block">
             <div class="product__price justify-content-start mb-3">

@@ -14,7 +14,7 @@
                                 doesn’t belong to this website!
                             </p>
                             <div class="back-btn">
-                                <a href="{{ route('shop') }}" class="btn btn-primary">Tiếp tục mua sắm</a>
+                                <a href="{{ route('shop') }}" class="btn btn-primary">{{ __('Tiếp tục mua sắm') }}</a>
                             </div>
                         </div>
                     </div>

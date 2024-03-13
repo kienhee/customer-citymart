@@ -88,8 +88,9 @@
                                     @foreach ($productSale as $item)
                                         <div class="swiper-slide">
                                             <x-product id="{{ $item->id }}" images="{{ $item->images }}"
-                                                name="{{ $item->name }}" description="{{ $item->description }}"
-                                                slug="{{ $item->slug }}" price="{{ $item->price }}"
+                                                name="{{ $item->name }}" nameSe="{{ $item->name_se }}"
+                                                description="{{ $item->description }}" slug="{{ $item->slug }}"
+                                                slugSe="{{ $item->slug_se }}" price="{{ $item->price }}"
                                                 discount="{{ $item->discount }}" quantity="{{ $item->quantity }}"
                                                 colors="{{ $item->colors }}" sizes="{{ $item->sizes }}" />
                                         </div>
@@ -223,8 +224,9 @@
                                     @foreach ($item['products'] as $item)
                                         <div class="swiper-slide">
                                             <x-product id="{{ $item['id'] }}" images="{{ $item['images'] }}"
-                                                name="{{ $item['name'] }}" description="{{ $item['description'] }}"
-                                                slug="{{ $item['slug'] }}" price="{{ $item['price'] }}"
+                                                name="{{ $item['name'] }}" nameSe="{{ $item['name_se'] }}"
+                                                description="{{ $item['description'] }}" slug="{{ $item['slug'] }}"
+                                                slugSe="{{ $item['slug_se'] }}" price="{{ $item['price'] }}"
                                                 discount="{{ $item['discount'] }}" quantity="{{ $item['quantity'] }}"
                                                 colors="{{ $item['colors'] }}" sizes="{{ $item['sizes'] }}" />
                                         </div>
@@ -293,7 +295,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#ECFDF3">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-01.png"
+                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-01.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">
@@ -305,7 +307,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#FFFAEB">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-02.png"
+                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-02.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">
@@ -317,7 +319,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#F9F5FF">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-03.png"
+                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-03.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">
@@ -329,7 +331,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#FEF3F2">
                         <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/{{ asset('client-frontend') }}/assets/images/feature/feature-04.png"
+                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-04.png"
                                 alt="feature-image" />
                         </div>
                         <div class="feature__content">

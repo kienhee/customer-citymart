@@ -50,9 +50,11 @@ function getCart() {
                 // Xóa các mục trong #cart__items trước khi thêm mục mới
                 $("#cart__items").empty();
                 // Lặp qua mỗi mục trong dữ liệu trả về
+                let checkcurrentLocale = $("#currentLocale").val();
                 $("#lengthCart").text(response.length);
                 let subtotal = calculateSubtotal(response);
                 $("#cart__subtotal").text(`${subtotal} Kr`);
+                console.log(checkcurrentLocale);
                 response.forEach(function (item) {
                     // Tạo HTML cho mỗi mục
                     let html = `
@@ -65,8 +67,12 @@ function getCart() {
                         <div class="shopping-card__content">
                             <div class="shopping-card__content-top">
                                 <h5 class="product__title">
-                                    <a href="/shop/${item.slug}">${
-                        item.name
+                                    <a href="/shop/${
+                                        checkcurrentLocale == "vi"
+                                            ? item.slug
+                                            : item.slug_se
+                                    }">${
+                        checkcurrentLocale == "vi" ? item.name : item.name_se
                     } </a>
                                 </h5>
                                 <h5 class="product__price">${

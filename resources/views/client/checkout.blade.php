@@ -131,7 +131,8 @@
                                            <div class="shopping-card__content-top">
                                                <h5 class="product__title">
                                                    <a
-                                                       href="{{ route('productDetail', $item['slug']) }}">{{ $item['name'] }}</a>
+                                                       href="{{ route('productDetail', App::currentLocale() == 'vi' ? $item['slug'] : $item['slug_se']) }}">{{ App::currentLocale() == 'vi' ? $item['name'] : $item['name_se'] }}
+                                                   </a>
                                                </h5>
                                                @if ($item['discount'] > 0)
                                                    {{-- Nếu có giảm giá --}}

@@ -292,7 +292,7 @@
     <section class="feature__section">
         <div class="container">
             <div class="row">
-                <div class="col-xl-3 col-lg-6 col-sm-6">
+                <div class="col-xl-4 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#ECFDF3">
                         <div class="feature__image">
                             <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-01.png"
@@ -304,7 +304,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-sm-6">
+                {{-- <div class="col-xl-4 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#FFFAEB">
                         <div class="feature__image">
                             <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-02.png"
@@ -315,8 +315,8 @@
                             <p>24/7 amazing services</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-sm-6">
+                </div> --}}
+                <div class="col-xl-4 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#F9F5FF">
                         <div class="feature__image">
                             <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-03.png"
@@ -328,7 +328,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-sm-6">
+                <div class="col-xl-4 col-lg-6 col-sm-6">
                     <div class="feature__single__item" data-bg="#FEF3F2">
                         <div class="feature__image">
                             <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-04.png"

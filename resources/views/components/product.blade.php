@@ -5,7 +5,7 @@
 
 <div class="product-card">
     <div class="product__image__wrapper">
-        <a href="{{ route('productDetail', $slug) }}" class="product__image">
+        <a href="{{ route('productDetail', App::currentLocale() == 'vi' ? $slug : $slugSe) }}" class="product__image">
             <img src="{{ getThumb(explode(',', $images)[0]) ?? '' }}" alt="icon" />
         </a>
         @if ($discount > 0)

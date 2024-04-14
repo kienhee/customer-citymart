@@ -61,5 +61,13 @@
   "Nhập số nhà, tên đường":"Nhập số nhà,tên đường",
   "Nội dung ghi chú":"Nội dung ghi chú",
   "Giao hàng hôm nay":"Giao hàng hôm nay",
-  "Xem thêm sản phẩm":"Xem thêm sản phẩm"
+  "Xem thêm sản phẩm":"Xem thêm sản phẩm",
+  "Vui lòng nhập họ và tên đầy đủ.":"Vui lòng nhập họ và tên đầy đủ.",
+  "Vui lòng nhập địa chỉ email.":"Vui lòng nhập địa chỉ email.",
+  "Địa chỉ email không hợp lệ.":"Địa chỉ email không hợp lệ.",
+  "Vui lòng nhập địa chỉ.":"Vui lòng nhập địa chỉ.",
+  "Vui lòng nhập số điện thoại.":"Vui lòng nhập số điện thoại.",
+  "Số điện thoại phải là số.":"Số điện thoại phải là số.",
+  "Vui lòng chọn phương thức thanh toán.":"Vui lòng chọn phương thức thanh toán.",
+  "Vui lòng reload lại trang web.":"Vui lòng reload lại trang web."
 }

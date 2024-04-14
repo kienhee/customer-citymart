@@ -61,5 +61,13 @@
 "Nhập số nhà, tên đường": "Ange husnummer och gatunamn",
 "Nội dung ghi chú": "Anteckningar",
 "Giao hàng hôm nay": "Leverans idag",
-"Xem thêm sản phẩm":"Se mer produkter."
+"Xem thêm sản phẩm":"Se mer produkter.",
+"Vui lòng nhập họ và tên đầy đủ.": "Var god ange fullständigt namn.",
+"Vui lòng nhập địa chỉ email.": "Var god ange e-postadress.",
+"Địa chỉ email không hợp lệ.": "Ogiltig e-postadress.",
+"Vui lòng nhập địa chỉ.": "Var god ange adress.",
+"Vui lòng nhập số điện thoại.": "Var god ange telefonnummer.",
+"Số điện thoại phải là số.": "Telefonnumret måste vara numeriskt.",
+"Vui lòng chọn phương thức thanh toán.": "Var god välj betalningsmetod.",
+"Vui lòng reload lại trang web.": "Var god ladda om webbsidan."
 }

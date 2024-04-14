@@ -54,7 +54,6 @@ function getCart() {
                 $("#lengthCart").text(response.length);
                 let subtotal = calculateSubtotal(response);
                 $("#cart__subtotal").text(`${subtotal} Kr`);
-                console.log(checkcurrentLocale);
                 response.forEach(function (item) {
                     // Tạo HTML cho mỗi mục
                     let html = `
@@ -136,7 +135,7 @@ function getCart() {
                     let uuid = $(this).closest("div").find(".uuid").val();
                     let currentVal = parseInt($qty.val(), 10);
                     if (!isNaN(currentVal)) {
-                        $qty.val(currentVal + 1);
+                        $qty.val(currentVal);
                     }
                     handleActionsCart(uuid, "incressQnt");
                 });
@@ -145,7 +144,7 @@ function getCart() {
                     let currentVal = parseInt($qty.val(), 10);
                     let uuid = $(this).closest("div").find(".uuid").val();
                     if (!isNaN(currentVal) && currentVal > 1) {
-                        $qty.val(currentVal - 1);
+                        $qty.val(currentVal);
                     } else {
                         $(this)
                             .parents(".cart__action__btn")

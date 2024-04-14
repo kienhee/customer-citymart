@@ -4,7 +4,7 @@
 
     <!-- Banner Section Start -->
     @if ($sliders)
-        <section class="banner__slider__section">
+        {{-- <section class="banner__slider__section">
             <div class="container">
                 <div class="row align-items-center column-reverse">
                     <div class="col-lg-6 col-md-6">
@@ -58,7 +58,28 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
+        <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (explode(',', $sliders->images) as $key => $image)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <img src="{{ $image }}" class="d-block w-100 "  alt="banner-bg">
+                    </div>
+                @endforeach
+
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     @endif
 
     <!-- Banner Slider Section End -->
@@ -288,61 +309,6 @@
     </section>
     <!-- CAll To Action End -->
 
-    <!-- Feature Section Start -->
-    <section class="feature__section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-4 col-lg-6 col-sm-6">
-                    <div class="feature__single__item" data-bg="#ECFDF3">
-                        <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-01.png"
-                                alt="feature-image" />
-                        </div>
-                        <div class="feature__content">
-                            <h4 class="feature__title">Mega Discounts</h4>
-                            <p>When sign up</p>
-                        </div>
-                    </div>
-                </div>
-                {{-- <div class="col-xl-4 col-lg-6 col-sm-6">
-                    <div class="feature__single__item" data-bg="#FFFAEB">
-                        <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-02.png"
-                                alt="feature-image" />
-                        </div>
-                        <div class="feature__content">
-                            <h4 class="feature__title">Free Delivery</h4>
-                            <p>24/7 amazing services</p>
-                        </div>
-                    </div>
-                </div> --}}
-                <div class="col-xl-4 col-lg-6 col-sm-6">
-                    <div class="feature__single__item" data-bg="#F9F5FF">
-                        <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-03.png"
-                                alt="feature-image" />
-                        </div>
-                        <div class="feature__content">
-                            <h4 class="feature__title">Secured Payment</h4>
-                            <p>We accept all credit cards</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-sm-6">
-                    <div class="feature__single__item" data-bg="#FEF3F2">
-                        <div class="feature__image">
-                            <img src="{{ asset('client-frontend') }}/assets/images/feature/feature-04.png"
-                                alt="feature-image" />
-                        </div>
-                        <div class="feature__content">
-                            <h4 class="feature__title">Easy Returns</h4>
-                            <p>30-days free return policy</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Feature Section End -->
+   
 
 @endsection

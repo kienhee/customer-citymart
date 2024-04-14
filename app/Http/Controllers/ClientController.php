@@ -91,7 +91,7 @@ class ClientController extends Controller
         } else {
             $product = Product::where('slug_se', $slug)->first();
         }
-    
+
         if (!$product) {
             abort(404);
         }
@@ -197,14 +197,14 @@ class ClientController extends Controller
             'delivery_type' => 'required',
             'order_id' => 'required',
         ], [
-            'name.required' => 'Vui lòng nhập họ và tên đầy đủ.',
-            'email.required' => 'Vui lòng nhập địa chỉ email.',
-            'email.email' => 'Địa chỉ email không hợp lệ.',
-            'address.required' => 'Vui lòng nhập địa chỉ.',
-            'phone.required' => 'Vui lòng nhập số điện thoại.',
-            'phone.numeric' => 'Số điện thoại phải là số.',
-            'delivery_type.required' => 'Vui lòng chọn phương thức thanh toán.',
-            'order_id.required' => 'Vui lòng reload lại trang web.',
+            'name.required' => __('Vui lòng nhập họ và tên đầy đủ.'),
+            'email.required' => __('Vui lòng nhập địa chỉ email.'),
+            'email.email' => __('Địa chỉ email không hợp lệ.'),
+            'address.required' => __('Vui lòng nhập địa chỉ.'),
+            'phone.required' => __('Vui lòng nhập số điện thoại.'),
+            'phone.numeric' => __('Số điện thoại phải là số.'),
+            'delivery_type.required' => __('Vui lòng chọn phương thức thanh toán.'),
+            'order_id.required' => __('Vui lòng reload lại trang web.'),
         ]);
         $cart = Session::get('cart', []);
         $quantity = 0;

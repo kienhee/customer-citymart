@@ -66,11 +66,9 @@
                                    @enderror
                                </div>
                                <h5 class="sub-title"> {{ __('Phương thức thanh toán') }}</h5>
-                               @error('delivery_type')
-                                   <p class="text-danger mb-5">{{ $message }}</p>
-                               @enderror
 
-                               <div class="form-group">
+
+                               {{-- <div class="form-group">
                                    <input type="radio" name="delivery_type" id="cash" class="delivery-input"
                                        value="cash"
                                        @if (old('delivery_type') == 'cash') @checked(true) @endif />
@@ -87,9 +85,9 @@
                                        <span class="status"></span>
                                    </label>
 
-                               </div>
+                               </div> --}}
                                @if ($swish)
-                                   <div class="form-group" onclick="swishNotice()">
+                                   <div class="form-group mb-3" onclick="swishNotice()">
                                        <input type="radio" name="delivery_type" id="swish" class="delivery-input"
                                            value="swish"
                                            @if (old('delivery_type') == 'swish') @checked(true) @endif />
@@ -107,6 +105,9 @@
                                        </label>
 
                                    </div>
+                                   @error('delivery_type')
+                                       <p class="text-danger ">{{ $message }}</p>
+                                   @enderror
                                @endif
 
 
@@ -122,8 +123,7 @@
                            <div class="cart__items">
                                @foreach ($cart as $item)
                                    <div class="shopping-card shopping-card__v2">
-                                       <a href="{{ route('productDetail', $item['slug']) }}"
-                                           class="shopping-card__image">
+                                       <a href="{{ route('productDetail', $item['slug']) }}" class="shopping-card__image">
                                            <img src="{{ getThumb(explode(',', $item['images'])[0]) ?? '' }}"
                                                alt="cart-product" />
                                        </a>

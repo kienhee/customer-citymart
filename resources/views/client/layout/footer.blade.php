@@ -114,7 +114,7 @@
                       <div class="footer__content text-center">
                           <div class="content">
                               <p>
-                                  &copy; 2023
+                                  &copy; 2024
                                   <a href="#">SuperMart</a>. All rights reserved
                               </p>
                           </div>

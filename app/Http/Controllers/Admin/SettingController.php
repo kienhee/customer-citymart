@@ -32,6 +32,8 @@ class SettingController extends Controller
             'map' => 'nullable',
             'isCalendar' => 'nullable|boolean',
             'isKanban' => 'nullable|boolean',
+            'shipping_price' => 'required|numeric',
+            'freeship_range' => 'required|numeric',
         ], [
             'email.email' => 'Địa chỉ email không hợp lệ.',
             'phone.string' => 'Số điện thoại phải là chuỗi.',
@@ -42,6 +44,10 @@ class SettingController extends Controller
             'linkedin.url' => 'Địa chỉ LinkedIn không hợp lệ.',
             'isCalendar.boolean' => 'Trường lịch là kiểu boolean.',
             'isKanban.boolean' => 'Trường Kanban là kiểu boolean.',
+            'shipping_price.required' => 'Vui lòng nhập trường này',
+            'freeship_range.required' => 'Vui lòng nhập trường này',
+            'shipping_price.numeric' => 'Bắt buộc phải là số',
+            'freeship_range.numeric' => 'Bắt buộc phải là số',
         ]);
 
         $check = Setting::where('id', 1)->update($data);

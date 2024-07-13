@@ -63,7 +63,7 @@
             <div class="carousel-inner">
                 @foreach (explode(',', $sliders->images) as $key => $image)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <img src="{{ $image }}" class="d-block w-100 "  alt="banner-bg">
+                        <img src="{{ $image }}" class="d-block w-100 " alt="banner-bg">
                     </div>
                 @endforeach
 
@@ -249,7 +249,8 @@
                                                 description="{{ $item['description'] }}" slug="{{ $item['slug'] }}"
                                                 slugSe="{{ $item['slug_se'] }}" price="{{ $item['price'] }}"
                                                 discount="{{ $item['discount'] }}" quantity="{{ $item['quantity'] }}"
-                                                colors="{{ $item['colors'] }}" sizes="{{ $item['sizes'] }}" />
+                                                colors="{{ $item['colors'] }}" sizes="{{ $item['sizes'] }}"
+                                                isButton="{{ false }}" />
                                         </div>
                                     @endforeach
                                 </div>
@@ -309,6 +310,6 @@
     </section>
     <!-- CAll To Action End -->
 
-   
+
 
 @endsection

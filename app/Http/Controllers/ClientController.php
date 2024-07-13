@@ -102,8 +102,10 @@ class ClientController extends Controller
     {
         // Lấy giỏ hàng từ session
         $cart = Session::get('cart', []);
-
-        return $cart;
+        $information = information();
+        $shipping_price =  $information->shipping_price;
+        $freeship_range =  $information->freeship_range;
+        return compact('shipping_price', 'freeship_range', 'cart');
     }
     public function addToCart(Request $request)
     {
@@ -156,6 +158,9 @@ class ClientController extends Controller
     {
         $uuid = $request->uuid;
         $actions = $request->action;
+        $information = information();
+        $shipping_price = $information->shipping_price;
+        $freeship_range = $information->freeship_range;
         // Lấy giỏ hàng từ session
         $cart = session()->get('cart', []);
         // Tìm sản phẩm có UUID tương ứng trong giỏ hàng và tăng số lượng
@@ -175,7 +180,7 @@ class ClientController extends Controller
         // Lưu giỏ hàng vào session
         session()->put('cart', $cart);
 
-        return response()->json(['title' => __('Đã thêm vào giỏ hàng!'), 'message' => __('Tiếp tục mua sắm'), 'data' => $cart], 200);
+        return response()->json(['title' => __('Đã thêm vào giỏ hàng!'), 'message' => __('Tiếp tục mua sắm'), 'data' => $cart, 'shipping_price' => $shipping_price, 'freeship_range' => $freeship_range], 200);
     }
     public function checkout()
     {
@@ -196,6 +201,7 @@ class ClientController extends Controller
             'notes' => 'nullable',
             'delivery_type' => 'required',
             'order_id' => 'required',
+            'zip_code' => ['required', 'regex:/^\d{3} \d{2}$/'],
         ], [
             'name.required' => __('Vui lòng nhập họ và tên đầy đủ.'),
             'email.required' => __('Vui lòng nhập địa chỉ email.'),
@@ -205,13 +211,31 @@ class ClientController extends Controller
             'phone.numeric' => __('Số điện thoại phải là số.'),
             'delivery_type.required' => __('Vui lòng chọn phương thức thanh toán.'),
             'order_id.required' => __('Vui lòng reload lại trang web.'),
+            'zip_code.required' => __('Vui lòng thêm mã zip code'),
+            'zip_code.regex' => __('Mã zip code phải có định dạng'),
         ]);
         $cart = Session::get('cart', []);
         $quantity = 0;
+
+        $information = information();
+        $shipping_price = $information->shipping_price;
+        $freeship_range = $information->freeship_range;
+
+        $total = calculateTotal($cart); // chưa xử lý tính tiền vận chuyển
+        $totalCart = $total; //tổng tiền giỏ hàng
+
         foreach ($cart as $item) {
             $quantity += $item['quantity'];
         }
-        $data['total'] = calculateTotal($cart);
+        // xử lý tính tiền vận chuyển
+        if ($total <= $freeship_range) {
+            $total += $shipping_price;
+            $data['shipping_price'] = $shipping_price . ' ' . 'Kr';
+        } else {
+            $data['shipping_price'] = 'Free shipping';
+        }
+        $data['total'] = $total;
+        $data['total_cart'] = $totalCart;
         $data['quantity'] = $quantity;
 
         $order = Order::create($data);

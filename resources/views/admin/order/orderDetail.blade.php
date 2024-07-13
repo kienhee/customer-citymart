@@ -113,6 +113,15 @@
                     <hr>
                     <div class="d-flex justify-content-end align-items-center m-3 mb-2 p-1">
                         <div class="order-calculations">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h6 class="w-px-100 mb-0">Tổng tiền:</h6>
+                                <h6 class="mb-0">{{ $order->total_cart }} Kr</h6>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <h6 class="w-px-100 mb-0">Vận chuyển:</h6>
+                                <h6 class="mb-0">{{ $order->shipping_price }}</h6>
+                            </div>
+                            <hr>
                             <div class="d-flex justify-content-between">
                                 <h6 class="w-px-100 mb-0">Thành tiền:</h6>
                                 <h6 class="mb-0">{{ $order->total }} Kr</h6>
@@ -152,6 +161,7 @@
                     </div>
                     <p class="mb-0">Số điện thoại: {{ $order->phone }}</p>
                     <p class="mb-0">Địa chỉ: {{ $order->address }}</p>
+                    <p class="mb-0">Mã bưu điện: {{ $order->zip_code }}</p>
                     <p class="mb-1">Ghi chú: {{ $order->notes }}</p>
                 </div>
             </div>

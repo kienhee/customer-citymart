@@ -1,7 +1,20 @@
    @php
+       $information = information();
+       $shipping_price = $information->shipping_price;
+       $freeship_range = $information->freeship_range;
        $swish = information()->swish;
        $orderID = '#' . generateOrderId();
-       $total = calculateTotal($cart);
+       $totalPrice = calculateTotal($cart);
+       $labelShipping = '';
+       $total = $totalPrice;
+       //    Xử lí vận chuyển
+       if ($total <= $freeship_range) {
+           $labelShipping = $shipping_price . ' ' . 'Kr';
+           $total += $shipping_price;
+       } else {
+           $labelShipping = 'Free';
+       }
+
    @endphp
    @extends('client.layout.index')
    @section('title', __('Thanh toán'))
@@ -54,6 +67,15 @@
                                    <input type="text" name="address" id="address" value="{{ old('address') }}"
                                        class="form-control" placeholder=" {{ __('Nhập số nhà, tên đường') }}" />
                                    @error('address')
+                                       <p class="text-danger my-2">{{ $message }}</p>
+                                   @enderror
+                               </div>
+                               <div class="form-group">
+                                   <label for="zip_code"> {{ __('Mã bưu điện') }}: <span
+                                           class="text-danger">*</span></label>
+                                   <input type="text" name="zip_code" id="zip_code" value="{{ old('zip_code') }}"
+                                       class="form-control" placeholder=" {{ __('Mã bưu điện') }}" />
+                                   @error('zip_code')
                                        <p class="text-danger my-2">{{ $message }}</p>
                                    @enderror
                                </div>
@@ -123,7 +145,8 @@
                            <div class="cart__items">
                                @foreach ($cart as $item)
                                    <div class="shopping-card shopping-card__v2">
-                                       <a href="{{ route('productDetail', $item['slug']) }}" class="shopping-card__image">
+                                       <a href="{{ route('productDetail', $item['slug']) }}"
+                                           class="shopping-card__image">
                                            <img src="{{ getThumb(explode(',', $item['images'])[0]) ?? '' }}"
                                                alt="cart-product" />
                                        </a>
@@ -158,22 +181,25 @@
 
                                <div class="bar"></div>
                            </div>
-                           {{-- <ul class="cart__subtotal cart__subtotal__v2">
-                            <li>
-                                <span class="label">Subtotal</span>
-                                <span class="value">{{ calculateTotal($cart) }} Kr</span>
-                            </li>
-                            <li>
-                                <span class="label">Shipping:</span>
-                                <span class="value">$15.22</span>
-                            </li>
+                           <ul class="cart__subtotal cart__subtotal__v2">
+                               <li>
+                                   <span class="label">{{ __('Tổng phụ') }}</span>
+                                   <span class="value">{{ $totalPrice }} Kr</span>
+                               </li>
+                               <li>
+                                   <span class="label">Shipping:</span>
+                                   <span class="value">{{ $labelShipping }}</span>
+                               </li>
 
-                        </ul> --}}
+                           </ul>
                            <div class="cart__total cart__total__v2 mb-5">
-                               <h3>{{ __('Tổng tiền') }}</h3>
+                               <h3>{{ __('Thành tiền') }}</h3>
                                <div class="total">{{ $total }} Kr</div>
                            </div>
-                           <button class="btn btn-lg btn-primary w-100 py-3"> {{ __('Xác nhận đặt hàng') }}</button>
+                           <button class="btn btn-lg btn-primary w-100 py-3 mb-3"> {{ __('Xác nhận đặt hàng') }}</button>
+                           <div class="text-muted text-center">
+                               <small>Om du köper över 1000 Kr blir det fri frakt</small>
+                           </div>
                        </div>
 
                    </div>
@@ -188,8 +214,8 @@
                Swal.fire({
                    title: `
                    <div class="bg-light h2">
-                    <strong >Swish: {{ $swish }}</strong> 
-                     <strong >Amount: {{ $total }} Kr</strong> 
+                    <strong >Swish: {{ $swish }}</strong>
+                     <strong >Amount: {{ $total }} Kr</strong>
                    <strong >Message: {{ $orderID }}</strong>
 
                         </div> `,
@@ -201,5 +227,17 @@
 
                });
            }
+           $(document).ready(function() {
+               $('#zip_code').on('input', function(e) {
+                   let value = $(this).val().replace(/\D/g, ''); // Loại bỏ tất cả ký tự không phải số
+                   if (value.length > 3) {
+                       value = value.slice(0, 3) + ' ' + value.slice(3); // Thêm dấu cách sau 3 chữ số đầu tiên
+                   }
+                   if (value.length > 6) {
+                       value = value.slice(0, 6); // Giới hạn độ dài tối đa là 6 ký tự (5 số và 1 dấu cách)
+                   }
+                   $(this).val(value);
+               });
+           });
        </script>
    @endsection

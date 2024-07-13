@@ -160,6 +160,45 @@
                     </div>
                     <div class="card mb-4">
                         <div class="card-header">
+                            <h5 class="card-title m-0"><i class='bx bx-link'></i> Vận chuyển</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="shipping_price">Giá ship mặc định (kr)</label>
+                                    <input type="text" id="shipping_price"
+                                        class="form-control @error('shipping_price')
+                                        is-invalid
+                                    @enderror"
+                                        name="shipping_price"
+                                        value="{{ old('shipping_price') ?? $setting->shipping_price }}"
+                                        placeholder="Giá shi mặc định" />
+                                    @error('shipping_price')
+                                        <p class="text-danger my-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="freeship_range">Khoảng giá sẽ được free ship
+                                        (kr)</label>
+                                    <input type="text" id="freeship_range"
+                                        class="form-control @error('freeship_range')
+                                        is-invalid
+                                    @enderror"
+                                        name="freeship_range"
+                                        value="{{ old('freeship_range') ?? $setting->freeship_range }}"
+                                        placeholder="Giá shi mặc định" />
+                                    @error('freeship_range')
+                                        <p class="text-danger my-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
                             <h5 class="card-title m-0"><i class='bx bx-link'></i> Nhúng map</h5>
                         </div>
                         <div class="card-body">

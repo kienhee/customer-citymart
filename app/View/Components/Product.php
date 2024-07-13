@@ -23,8 +23,8 @@ class Product extends Component
     public $quantity;
     public $colors;
     public $sizes;
-
-    public function __construct($id, $images, $name, $nameSe, $description, $slug, $slugSe, $price, $discount, $quantity, $colors, $sizes)
+    public $isButton;
+    public function __construct($id, $images, $name, $nameSe, $description, $slug, $slugSe, $price, $discount, $quantity, $colors, $sizes, $isButton = true)
     {
         $this->id = $id;
         $this->images = $images;
@@ -38,6 +38,7 @@ class Product extends Component
         $this->quantity = $quantity;
         $this->colors = $colors;
         $this->sizes = $sizes;
+        $this->isButton = $isButton;
     }
 
     /**

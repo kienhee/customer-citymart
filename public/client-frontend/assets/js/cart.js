@@ -46,15 +46,28 @@ function getCart() {
         type: "GET",
         url: "/get-cart",
         success: function (response) {
-            if (response) {
+            if (response && response.cart) {
+                let { cart, shipping_price, freeship_range } = response;
                 // Xóa các mục trong #cart__items trước khi thêm mục mới
                 $("#cart__items").empty();
                 // Lặp qua mỗi mục trong dữ liệu trả về
                 let checkcurrentLocale = $("#currentLocale").val();
-                $("#lengthCart").text(response.length);
-                let subtotal = calculateSubtotal(response);
+                $("#lengthCart").text(cart.length);
+                let subtotal = calculateSubtotal(cart);
+                // Tiền khi chưa tính ship
+                $("#cart__total_price").text(`${subtotal} Kr`);
+                //Xử lí tính tiền vận chuyển
+                // Nếu tổng tiền giỏ hàng mà <= khoảng tiền được freeship thì + tiền ship
+                if (subtotal <= freeship_range) {
+                    subtotal += shipping_price;
+                    $("#cart__shipping").text(`${shipping_price} Kr`);
+                } else {
+                    $("#cart__shipping").text(`Free shipping`);
+                }
+
                 $("#cart__subtotal").text(`${subtotal} Kr`);
-                response.forEach(function (item) {
+
+                cart.forEach(function (item) {
                     // Tạo HTML cho mỗi mục
                     let html = `
                     <div class="shopping-card">
@@ -80,22 +93,22 @@ function getCart() {
                                         : item.price
                                 } Kr</h5>
                             </div>
-                            <div class="mb-2" >     
+                            <div class="mb-2" >
                              ${
                                  item.size
-                                     ? `<p class="mb-0" style="font-size:14px"><small class="text-muted">Type: 
+                                     ? `<p class="mb-0" style="font-size:14px"><small class="text-muted">Type:
                                            ${item.size}
                                          </small></p> `
                                      : ""
                              }
                                     ${
                                         item.color
-                                            ? `<p class="mb-0" style="font-size:14px"><small class="text-muted ">Color: 
+                                            ? `<p class="mb-0" style="font-size:14px"><small class="text-muted ">Color:
                                            ${item.color.split("-")[0]}
                                          </small></p>`
                                             : ""
                                     }</div>
-                       
+
                             <div class="shopping-card__content-bottom">
                                 <div class="quantity__wrapper">
                                     <div class="quantity">
@@ -112,8 +125,8 @@ function getCart() {
                                             <span class="bar"></span>
                                         </button>
                                     </div>
-                                   
-                                         
+
+
                                 </div>
                                 <button type="button" class="action__btn" onclick="deleteItem('${
                                     item.uuid
@@ -135,7 +148,7 @@ function getCart() {
                     let uuid = $(this).closest("div").find(".uuid").val();
                     let currentVal = parseInt($qty.val(), 10);
                     if (!isNaN(currentVal)) {
-                        $qty.val(currentVal);
+                        $qty.val(currentVal + 1);
                     }
                     handleActionsCart(uuid, "incressQnt");
                 });
@@ -144,7 +157,7 @@ function getCart() {
                     let currentVal = parseInt($qty.val(), 10);
                     let uuid = $(this).closest("div").find(".uuid").val();
                     if (!isNaN(currentVal) && currentVal > 1) {
-                        $qty.val(currentVal);
+                        $qty.val(currentVal - 1);
                     } else {
                         $(this)
                             .parents(".cart__action__btn")
@@ -172,8 +185,18 @@ function handleActionsCart(uuid, action) {
         },
         success: function (response) {
             // Xử lý phản hồi từ máy chủ nếu cần
-            // console.log(response);
-            let subtotal = calculateSubtotal(response.data);
+            let { data, shipping_price, freeship_range } = response;
+            let subtotal = calculateSubtotal(data);
+            // Tiền khi chưa tính ship
+            $("#cart__total_price").text(`${subtotal} Kr`);
+            //Xử lí tính tiền vận chuyển
+            // Nếu tổng tiền giỏ hàng mà <= khoảng tiền được freeship thì + tiền ship
+            if (subtotal <= freeship_range) {
+                subtotal += shipping_price;
+                $("#cart__shipping").text(`${shipping_price} Kr`);
+            } else {
+                $("#cart__shipping").text(`Free shipping`);
+            }
             $("#cart__subtotal").text(`${subtotal} Kr`);
         },
         error: function (xhr) {
@@ -214,10 +237,10 @@ function calculateTotalPrice(product) {
 }
 
 // Tính tổng subtotal của tất cả các sản phẩm
-function calculateSubtotal(products) {
+function calculateSubtotal(cart) {
     var subtotal = 0;
-    for (var i = 0; i < products.length; i++) {
-        subtotal += calculateTotalPrice(products[i]);
+    for (var i = 0; i < cart.length; i++) {
+        subtotal += calculateTotalPrice(cart[i]);
     }
     return subtotal;
 }

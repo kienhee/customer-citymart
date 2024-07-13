@@ -33,20 +33,19 @@
                     {{ number_format($price) }} Kr
                 @endif
             </div>
-
-            <div class="cart__action__btn ">
-                <div class="cart__btn">
-                    <button class="btn btn-outline w-100">{{ __('Thêm vào giỏ hàng') }}</button>
-                    <input type="hidden" class="product_id-hidden" value="{{ $id }}">
-                    <input type="hidden" class="color-hidden" value="{{ $colors }}">
-                    <input type="hidden" class="size-hidden"
-                        value="@if (isset($sizes[0])) {{ $sizes[0]['value'] }} @endif">
+            @if ($isButton)
+                <div class="cart__action__btn ">
+                    <div class="cart__btn">
+                        <button class="btn btn-outline w-100">{{ __('Thêm vào giỏ hàng') }}</button>
+                        <input type="hidden" class="product_id-hidden" value="{{ $id }}">
+                        <input type="hidden" class="color-hidden" value="{{ $colors }}">
+                        <input type="hidden" class="size-hidden"
+                            value="@if (isset($sizes[0])) {{ $sizes[0]['value'] }} @endif">
+                    </div>
                 </div>
-            </div>
+            @endif
+
         </div>
     </div>
 
 </div>
-@section('script')
-    <script></script>
-@endsection

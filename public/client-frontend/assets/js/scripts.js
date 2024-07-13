@@ -4,7 +4,7 @@
     /*********************************
     /* Table of Context
     /* *******************************
-    /* 
+    /*
     /* Preloader
     /* Sticky Navbar
     /* Scroll Top Bar
@@ -31,18 +31,18 @@
     /* Dynamic Feature Background
     /* Add/Minus Quantity
     /* Cart Button Action
-    /* CountDown 
-    /* Filter Remove Function 
+    /* CountDown
+    /* Filter Remove Function
     /* Cricle Skill Bar
-    /* Image Upload 
+    /* Image Upload
     /* Side Bar js
     /* Progress Bar
     /* Avatar Dropdown
     /* Filter Dropdown
-    /* Image Upload 
-    /* Flatpickr Configuration 
-    /* Date Format 
-    /* Invoice Date Format 
+    /* Image Upload
+    /* Flatpickr Configuration
+    /* Date Format
+    /* Invoice Date Format
     /* Filter Dropdown
     /* Dashboard Chat sidebar toggler
     /* Open Emoji and Attachment popup
@@ -803,17 +803,17 @@
     /*********************************
     /* Cart Button Action
     *********************************/
-    $(".cart__btn .btn").on("click", function (e) {
-        e.preventDefault();
-        $(".qnttinput").val(1);
-        $(this)
-            .parents(".cart__action__btn")
-            .find(".cart__quantity")
-            .css("display", "inline-flex");
-    });
+    // $(".cart__btn .btn").on("click", function (e) {
+    //     e.preventDefault();
+    //     $(".qnttinput").val(1);
+    //     $(this)
+    //         .parents(".cart__action__btn")
+    //         .find(".cart__quantity")
+    //         .css("display", "inline-flex");
+    // });
 
     /*********************************
-    /* CountDown 
+    /* CountDown
     *********************************/
     var austDay = new Date();
     austDay.setDate(austDay.getDate() + 3); // Thêm 2 ngày vào thời điểm hiện tại
@@ -823,7 +823,7 @@
         labels: ["Year", "Mo", "Wk", "Days", "Hours", "Mins", "Sec"],
     });
     /*********************************
-    /* Filter Remove Function 
+    /* Filter Remove Function
     *********************************/
     if ($(".filtered-query").length > 0) {
         $(".filtered-query .action").on("click", function () {

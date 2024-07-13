@@ -37,7 +37,15 @@
               <!-- Total Start -->
               <hr>
               <div class="cart__total">
-                  <h3>{{ __('Tổng tiền') }}</h3>
+                  <h3>{{ __('Tổng phụ') }}</h3>
+                  <div class="total" id="cart__total_price">0 Kr</div>
+              </div>
+              <div class="cart__total">
+                  <h3>Shipping</h3>
+                  <div class="total" id="cart__shipping">0 Kr</div>
+              </div>
+              <div class="cart__total">
+                  <h3>{{ __('Thành tiền') }}</h3>
                   <div class="total" id="cart__subtotal">0 Kr</div>
               </div>
               <!-- Total End -->
